@@ -14,12 +14,12 @@ import {
 } from 'recharts';
 import MultiLine from '../components/MultiLine.jsx';
 
-const Homepage = () => {
+const Improvements = () => {
   
   return (
     <Flex w="100%" maxW="1366px" p="1rem" direction="column">
       <Heading align="center" my="1rem">
-        Homepage
+        Improvements
       </Heading>
 
       <MultiLine />
@@ -27,4 +27,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default Improvements;

@@ -3,6 +3,7 @@ import {
   Flex,
   Heading,
   IconButton,
+  Image,
   Menu,
   MenuList,
   MenuItem,
@@ -13,50 +14,40 @@ import { FaUser } from "react-icons/fa";
 
 const Navbar = () => {
 
+  let navPadding = "10px"
+
   return (
-    <Flex h="3.5rem" justifyContent="center" bg="gray.700" color="white">
+    <Flex width="100%" h="3.5rem" bg="gray.700" color="white">
       <Flex
         w="100%"
         maxW="1366px"
         h="100%"
         alignItems="center"
         px="1rem"
-        justifyContent="space-between"
       >
         <Heading
           as={RouterLink}
           to={"/"}
           minW="max-content"
+          padding={navPadding}
         >
-          Home
-        </Heading>
-        <Heading
-          as={RouterLink}
-          to={"/scenario"}
-          minW="max-content"
-        >
-          Scenario
+          <Image src='images/combatiq_logo.svg' />
         </Heading>
         <Heading
           as={RouterLink}
           to={"/video"}
           minW="max-content"
+          padding={navPadding}
         >
           Video
         </Heading>
         <Heading
           as={RouterLink}
-          to={"/comparison"}
+          to={"/datavis"}
           minW="max-content"
+          padding={navPadding}
         >
-          Comparison
-        </Heading>
-        <Heading
-          as={RouterLink}
-          to={"/fighters"}
-          minW="max-content"
-        >
-          Fighters
+          DataVis
         </Heading>
       </Flex>
     </Flex>

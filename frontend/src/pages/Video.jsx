@@ -26,14 +26,9 @@ const Video = () => {
   return (
     <VStack>
       <Heading align="center" my="1rem">
-        Video
-      </Heading>
-      <Flex>
-        <VideoInput width={400} height={300} />
-      </Flex>
-      <Heading align="center" my="1rem">
         Please upload a video
       </Heading>
+      <VideoInput width={400} height={300} />
       <Tabs variant='enclosed'>
         <TabList>
           <Tab>Bio</Tab>
