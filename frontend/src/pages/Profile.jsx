@@ -41,21 +41,21 @@ import {
 const Profile = () => {
 
   return (
-    <>
+    <VStack>
       <Heading align="left" my="1rem">
         My Profile
       </Heading>
       
       <Stack direction='row'>
         <Image 
-          boxSize='200px'
-          src='https://bit.ly/dan-abramov' alt='Dan Abramov' />
-        <Stack spacing={2}>
-          <Text fontSize='3xl'>Dan Abramov</Text>
-          <Text fontSize='xl'>Nationality, Gender</Text>
-          <Text fontSize='xl'>age (birthday)</Text>
-          <Text fontSize='xl'>height, weight (%muscle, %fat, %water)</Text>
-          <Text fontSize='xl'>club</Text>
+          boxSize='190px'
+          src='https://img.bleacherreport.net/img/images/photos/002/098/618/AP11111909790_crop_exact.jpg?w=1200&h=1200&q=75' alt='Dan Abramov' />
+        <Stack spacing={1.8}>
+          <Text fontSize='3xl'>Wanderlei Silva</Text>
+          <Text fontSize='xl'>Brazilian American, Male</Text>
+          <Text fontSize='xl'>age (3 July 1976)</Text>
+          <Text fontSize='xl'>180 cm, 220 lb (%muscle, %fat, %water)</Text>
+          <Text fontSize='xl'>Team: Chute Boxe Academy</Text>
         </Stack>
       </Stack>
 
@@ -77,7 +77,6 @@ const Profile = () => {
       <TabList>
       <Tab>Basic Information</Tab>
         <Tab>More Information</Tab>
-        <Tab>Improvement Over Time</Tab>
         <Tab>Fight Information</Tab>
       </TabList>
     
@@ -116,15 +115,12 @@ const Profile = () => {
           <p>two!</p>
         </TabPanel>
         <TabPanel>
-          <p>three!</p>
-        </TabPanel>
-        <TabPanel>
           <p>We can have some introductions of this page. xxxxxxxxxxxx</p>
 
           <StatGroup>
             <Stat>
               <StatLabel>Number of Fight</StatLabel>
-              <StatNumber>3</StatNumber>
+              <StatNumber>49</StatNumber>
               <StatHelpText>
                 <StatArrow type='increase' />
                 23.36%
@@ -132,7 +128,7 @@ const Profile = () => {
             </Stat>
             <Stat>
               <StatLabel>Wins</StatLabel>
-              <StatNumber>2</StatNumber>
+              <StatNumber>35</StatNumber>
               <StatHelpText>
                 <StatArrow type='decrease' />
                 19.05%
@@ -140,7 +136,7 @@ const Profile = () => {
             </Stat>
             <Stat>
               <StatLabel>Losses</StatLabel>
-              <StatNumber>1</StatNumber>
+              <StatNumber>14</StatNumber>
               <StatHelpText>
                 <StatArrow type='increase' />
                 30.00%
@@ -158,7 +154,7 @@ const Profile = () => {
         </TabPanel>
       </TabPanels>
     </Tabs>
-  </>
+  </VStack>
   );
 
 };
