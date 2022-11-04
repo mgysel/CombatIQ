@@ -5,15 +5,57 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import MultiLine from "../components/MultiLine";
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
+  MenuIcon,
+  MenuCommand
+} from '@chakra-ui/react'
+import { Button, Image } from "@chakra-ui/react";
 
 const DataVis = () => {
   
   return (
+    
     <VStack>
       <Heading align="center" my="1rem">
-        DataVis Example
+        Improvement Over Time
       </Heading>
+      <Menu>
+        <MenuButton as={Button} rightIcon='▾'>
+          Select a metric
+        </MenuButton>
+        <MenuList>
+          <MenuItem minH='48px'>
+            <Image
+              boxSize='2rem'
+              borderRadius='full'
+              src='https://placekitten.com/100/100'
+              alt='Strikes'
+              mr='12px'
+            />
+            <span>Strikes</span>
+          </MenuItem>
+          <MenuItem minH='40px'>
+            <Image
+              boxSize='2rem'
+              borderRadius='full'
+              src='https://placekitten.com/120/120'
+              alt='Significant Strikes'
+              mr='12px'
+            />
+            <span>Significant Strikes</span>
+          </MenuItem>
+        </MenuList>
+      </Menu>
       <MultiLine />
+
     </VStack>
 
   );
