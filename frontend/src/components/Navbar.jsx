@@ -35,19 +35,19 @@ const Navbar = () => {
         </Heading>
         <Heading
           as={RouterLink}
+          to={"/trends"}
+          minW="max-content"
+          padding={navPadding}
+        >
+          Trends
+        </Heading>
+        <Heading
+          as={RouterLink}
           to={"/video"}
           minW="max-content"
           padding={navPadding}
         >
           Video
-        </Heading>
-        <Heading
-          as={RouterLink}
-          to={"/datavis"}
-          minW="max-content"
-          padding={navPadding}
-        >
-          DataVis
         </Heading>
       </Flex>
     </Flex>
