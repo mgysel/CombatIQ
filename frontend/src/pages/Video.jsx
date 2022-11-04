@@ -4,6 +4,7 @@ import {
   Flex,
   Heading,
   VStack,
+  Divider,
 } from "@chakra-ui/react";
 import VideoInput from '../components/VideoInput.jsx'
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
@@ -22,6 +23,14 @@ import {
 import { Button, Image } from "@chakra-ui/react";
 import { BodyComponent } from "reactjs-human-body";
 import { Stack, Text } from "@chakra-ui/react";
+import {
+  Stat,
+  StatLabel,
+  StatNumber,
+  StatHelpText,
+  StatArrow,
+  StatGroup,
+} from '@chakra-ui/react'
 
 const Video = () => {
 
@@ -59,12 +68,77 @@ const Video = () => {
                 <Text fontSize='l'>Team: Chute Boxe Academy</Text>
               </Stack>
             </Stack>
+
+            <StatGroup pt='50px'>
+              <Stat>
+                <StatLabel>Number of Fight</StatLabel>
+                <StatNumber>49</StatNumber>
+                <StatHelpText>
+                  <StatArrow type='increase' />
+                  23.36%
+                </StatHelpText>
+              </Stat>
+              <Stat>
+                <StatLabel>Wins</StatLabel>
+                <StatNumber>35</StatNumber>
+                <StatHelpText>
+                  <StatArrow type='decrease' />
+                  19.05%
+                </StatHelpText>
+              </Stat>
+              <Stat>
+                <StatLabel>Losses</StatLabel>
+                <StatNumber>14</StatNumber>
+                <StatHelpText>
+                  <StatArrow type='increase' />
+                  30.00%
+                </StatHelpText>
+              </Stat>
+            </StatGroup>
           </TabPanel>
           <TabPanel>
             <p>two!</p>
+            <div>
+              <BodyComponent
+                  partsInput={{
+                    head: { show: true },
+                    left_shoulder: { show: true },
+                    right_shoulder: { show: true },
+                    left_arm: { show: true },
+                    right_arm: { show: true },
+                    chest: { show: true },
+                    stomach: { show: true },
+                    left_leg: { show: true },
+                    right_leg: { show: true },
+                    left_hand: { show: true },
+                    right_hand: { show: true },
+                    left_foot: { show: true },
+                    right_foot: { show: true }
+                  }}
+                />
+            </div>
           </TabPanel>
           <TabPanel>
             <p>three!</p>
+            <div>
+              <BodyComponent
+                  partsInput={{
+                    head: { show: true },
+                    left_shoulder: { show: true },
+                    right_shoulder: { show: true },
+                    left_arm: { show: true },
+                    right_arm: { show: true },
+                    chest: { show: true },
+                    stomach: { show: true },
+                    left_leg: { show: true },
+                    right_leg: { show: true },
+                    left_hand: { show: true },
+                    right_hand: { show: true },
+                    left_foot: { show: true },
+                    right_foot: { show: true }
+                  }}
+                />
+            </div>
           </TabPanel>
           <TabPanel>
             <p>Some introductions of this page</p>
@@ -95,28 +169,28 @@ const Video = () => {
                 </MenuItem>
               </MenuList>
             </Menu>
+            <div>
+              <BodyComponent
+                  partsInput={{
+                    head: { show: true },
+                    left_shoulder: { show: true },
+                    right_shoulder: { show: true },
+                    left_arm: { show: true },
+                    right_arm: { show: true },
+                    chest: { show: true },
+                    stomach: { show: true },
+                    left_leg: { show: true },
+                    right_leg: { show: true },
+                    left_hand: { show: true },
+                    right_hand: { show: true },
+                    left_foot: { show: true },
+                    right_foot: { show: true }
+                  }}
+                />
+            </div>
           </TabPanel>
         </TabPanels>
       </Tabs>
-      <div>
-        <BodyComponent
-            partsInput={{
-              head: { show: true },
-              left_shoulder: { show: true },
-              right_shoulder: { show: true },
-              left_arm: { show: true },
-              right_arm: { show: true },
-              chest: { show: true },
-              stomach: { show: true },
-              left_leg: { show: true },
-              right_leg: { show: true },
-              left_hand: { show: true },
-              right_hand: { show: true },
-              left_foot: { show: true },
-              right_foot: { show: true }
-            }}
-          />
-      </div>
     </VStack>
   );
 };
