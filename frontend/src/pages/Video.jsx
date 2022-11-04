@@ -20,8 +20,15 @@ import {
   MenuCommand
 } from '@chakra-ui/react'
 import { Button, Image } from "@chakra-ui/react";
+import { BodyComponent } from "reactjs-human-body";
 
 const Video = () => {
+
+  const [params, setParams] = useState();
+  const exampleParams = {
+    head: { selected: true },
+    left_arm: { show: false }
+  }
   
   return (
     <VStack>
@@ -79,6 +86,25 @@ const Video = () => {
           </TabPanel>
         </TabPanels>
       </Tabs>
+      <div>
+        <BodyComponent
+            partsInput={{
+              head: { show: true },
+              left_shoulder: { show: true },
+              right_shoulder: { show: true },
+              left_arm: { show: true },
+              right_arm: { show: true },
+              chest: { show: true },
+              stomach: { show: true },
+              left_leg: { show: true },
+              right_leg: { show: true },
+              left_hand: { show: true },
+              right_hand: { show: true },
+              left_foot: { show: true },
+              right_foot: { show: true }
+            }}
+          />
+      </div>
     </VStack>
   );
 };
