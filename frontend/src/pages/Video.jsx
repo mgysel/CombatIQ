@@ -21,6 +21,7 @@ import {
 } from '@chakra-ui/react'
 import { Button, Image } from "@chakra-ui/react";
 import { BodyComponent } from "reactjs-human-body";
+import { Stack, Text } from "@chakra-ui/react";
 
 const Video = () => {
 
@@ -46,7 +47,18 @@ const Video = () => {
 
         <TabPanels>
           <TabPanel>
-            <p>one!</p>
+            <Stack direction='row'>
+              <Image 
+                boxSize='100px'
+                src='https://img.bleacherreport.net/img/images/photos/002/098/618/AP11111909790_crop_exact.jpg?w=1200&h=1200&q=75' alt='Dan Abramov' />
+              <Stack spacing={2}>
+                <Text fontSize='2xl'>Wanderlei Silva</Text>
+                <Text fontSize='l'>Brazilian American, Male</Text>
+                <Text fontSize='l'>age (3 July 1976)</Text>
+                <Text fontSize='l'>180 cm, 220 lb (%muscle, %fat, %water)</Text>
+                <Text fontSize='l'>Team: Chute Boxe Academy</Text>
+              </Stack>
+            </Stack>
           </TabPanel>
           <TabPanel>
             <p>two!</p>
