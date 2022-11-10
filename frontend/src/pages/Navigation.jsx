@@ -4,6 +4,7 @@ import Profile from "./Profile";
 import Trends from "./Trends";
 import Video from "./Video";
 import Fighter from "./Fighter";
+import HumanBody from "./HumanBody";
 
 const Navigation = () => {
   return (
@@ -19,6 +20,9 @@ const Navigation = () => {
       </Route>
       <Route exact path="/fighter/:fighter-id">
         <Fighter />
+      </Route>
+      <Route exact path="/humanbody">
+        <HumanBody />
       </Route>
     </Switch>
   );
