@@ -57,6 +57,14 @@ const Navbar = () => {
         >
           Human Body
         </Heading>
+        <Heading
+          as={RouterLink}
+          to={"/browsevideo"}
+          minW="max-content"
+          padding={navPadding}
+        >
+          Browse Video
+        </Heading>
       </Flex>
     </Flex>
   );

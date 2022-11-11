@@ -5,6 +5,7 @@ import Trends from "./Trends";
 import Video from "./Video";
 import Fighter from "./Fighter";
 import HumanBody from "./HumanBody";
+import BrowseVideo from "../components/BrowseVideo";
 
 const Navigation = () => {
   return (
@@ -23,6 +24,9 @@ const Navigation = () => {
       </Route>
       <Route exact path="/humanbody">
         <HumanBody />
+      </Route>
+      <Route exact path="/browsevideo">
+        <BrowseVideo />
       </Route>
     </Switch>
   );

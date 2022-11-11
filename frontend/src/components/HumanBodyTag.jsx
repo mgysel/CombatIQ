@@ -17,6 +17,7 @@ const HumanBodyTag = (props) => {
     <Tag id='head-label' class='head-label' size='lg' colorScheme='red' padding='10px' position='absolute' zIndex={10000}
       marginLeft={props.marginLeft}
       marginTop={props.marginTop}
+      width={props.width}
     >
         <VStack>
           <TagLabel fontWeight='bold'>{props.title}</TagLabel>
