@@ -6,8 +6,12 @@ import {
   Flex,
   Grid,
   Heading,
+  Tab,
+  Tabs,
+  TabList,
+  TabPanel,
+  TabPanels,
   VStack,
-  Divider,
 } from "@chakra-ui/react";
 // import {
 //   useDisclosure,
@@ -20,27 +24,38 @@ import {
 //   Box
 // } from "@chakra-ui/core";
 import VideoCard from '../../components/video/VideoCard.jsx'
-import VideoInput from '../../components/video/VideoInput.jsx'
+import UploadVideoForm from "../forms/UploadVideoForm.jsx";
 
 const BrowseVideo = () => {
+
+  // For radio
+  const [tabIndex, setTabIndex] = useState(0)
   
   return (
     <Flex w="100%" maxW="1366px" p="1rem" direction="column">
-      <VideoInput width={400} height={300} />
-
-      <Heading align="center" my="1rem" pb='25px'>
-        Browse Past Videos
-      </Heading>
-      <Center>
-        <Grid templateColumns='repeat(3, 1fr)' gap={9}>
-          <VideoCard />
-          <VideoCard />
-          <VideoCard />
-          <VideoCard />
-          <VideoCard />
-          <VideoCard />
-        </Grid>
-      </Center>
+      <Tabs variant='enclosed' pl='10vw' pr='10vw' onChange={(index) => setTabIndex(index)}>
+        <TabList>
+          <Tab>Browse Past Videos</Tab>
+          <Tab>Upload a Video</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <Center>
+              <Grid templateColumns='repeat(3, 1fr)' gap={9}>
+                <VideoCard />
+                <VideoCard />
+                <VideoCard />
+                <VideoCard />
+                <VideoCard />
+                <VideoCard />
+              </Grid>
+            </Center>
+          </TabPanel>
+          <TabPanel>
+            <UploadVideoForm />
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
       
     </Flex>
   );

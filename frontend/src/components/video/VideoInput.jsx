@@ -33,7 +33,7 @@ const VideoInput = (props) => {
         onChange={handleFileChange}
         accept=".mov,.mp4"
       />
-      {!source && <Button onClick={handleChoose}>Upload a New Video</Button>}
+      {!source && <Button onClick={handleChoose}>Select Video</Button>}
       {source && (
         <VStack>
           <Button onClick={handleChoose}>Change Video</Button>
