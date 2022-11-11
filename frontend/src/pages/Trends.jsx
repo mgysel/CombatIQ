@@ -6,7 +6,7 @@ import {
   HStack,
   VStack,
 } from "@chakra-ui/react";
-import MultiLine from "../components/MultiLine";
+import MultiLine from "../components/visualisations/MultiLine";
 import {
   Menu,
   MenuButton,

@@ -9,6 +9,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import './VideoCard.css'
 
 const VideoCard = () => {
 
@@ -19,20 +20,20 @@ const VideoCard = () => {
   let videoSrc = "https://www.youtube.com/embed/QhBnZ6NPOY0"
   
   return (
-    <VStack>
-      <AspectRatio minW='260px' maxW='560px' ratio={1}>
-        <iframe
+    <VStack pl='10px' pr='10px'>
+      <div border-radius='10px' overflow='hidden' z-index='1'>
+        <iframe class='video-card'
           title='naruto'
           src={videoSrc}
           allowFullScreen
+          frameborder="0"
         />
-      </AspectRatio>
+      </div>
       <Heading fontSize='2xl'>{videoTitle}</Heading>
       <HStack>
         <Text fontSize='1xl'>{videoDate}</Text>
         <Text fontSize='1xl'>{videoLength}</Text>
       </HStack>
-      
     </VStack>
   );
 };

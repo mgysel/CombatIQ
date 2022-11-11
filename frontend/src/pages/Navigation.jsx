@@ -4,8 +4,7 @@ import Profile from "./Profile";
 import Trends from "./Trends";
 import Video from "./Video";
 import Fighter from "./Fighter";
-import HumanBody from "./HumanBody";
-import BrowseVideo from "../components/BrowseVideo";
+import BrowseVideo from "../components/video/BrowseVideo";
 
 const Navigation = () => {
   return (
@@ -21,9 +20,6 @@ const Navigation = () => {
       </Route>
       <Route exact path="/fighter/:fighter-id">
         <Fighter />
-      </Route>
-      <Route exact path="/humanbody">
-        <HumanBody />
       </Route>
       <Route exact path="/browsevideo">
         <BrowseVideo />

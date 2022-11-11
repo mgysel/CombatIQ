@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import {
   Box,
+  Center,
   Flex,
   Grid,
   Heading,
@@ -18,8 +19,8 @@ import {
 //   DrawerCloseButton,
 //   Box
 // } from "@chakra-ui/core";
-import VideoCard from '../components/VideoCard.jsx'
-import VideoInput from '../components/VideoInput.jsx'
+import VideoCard from '../../components/video/VideoCard.jsx'
+import VideoInput from '../../components/video/VideoInput.jsx'
 
 const BrowseVideo = () => {
   
@@ -27,17 +28,19 @@ const BrowseVideo = () => {
     <Flex w="100%" maxW="1366px" p="1rem" direction="column">
       <VideoInput width={400} height={300} />
 
-      <Heading align="center" my="1rem">
+      <Heading align="center" my="1rem" pb='25px'>
         Browse Past Videos
       </Heading>
-      <Grid templateColumns='repeat(3, 1fr)' gap={2}>
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-      </Grid>
+      <Center>
+        <Grid templateColumns='repeat(3, 1fr)' gap={9}>
+          <VideoCard />
+          <VideoCard />
+          <VideoCard />
+          <VideoCard />
+          <VideoCard />
+          <VideoCard />
+        </Grid>
+      </Center>
       
     </Flex>
   );

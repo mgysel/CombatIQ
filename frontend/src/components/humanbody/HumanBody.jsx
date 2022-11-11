@@ -15,7 +15,7 @@ import {
 import { Link as RouterLink } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import './HumanBody.css';
-import HumanBodyTag from "../components/HumanBodyTag";
+import HumanBodyTag from "./HumanBodyTag";
 
 const HumanBody = (props) => {
   let data = {
