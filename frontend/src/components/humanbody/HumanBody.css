@@ -19,14 +19,14 @@
   cursor: pointer;
 }
 
-.group-hover:hover path {
+/* .group-hover:hover path {
   fill: #ff7d16;
-}
+} */
 
 .human-body svg {
   position: absolute;
   left: 50%;
-  fill: #57c9d5;
+  /* fill: #57c9d5; */
 }
 
 .human-body svg#head {
