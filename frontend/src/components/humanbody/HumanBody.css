@@ -17,11 +17,13 @@
 
 .group-hover:hover {
   cursor: pointer;
+  opacity: 1;
 }
 
-/* .group-hover:hover path {
-  fill: #ff7d16;
-} */
+.group-hover:hover path {
+  /* fill: #ff7d16; */
+  opacity: 0.7;
+}
 
 .human-body svg {
   position: absolute;
