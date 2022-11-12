@@ -164,14 +164,14 @@ const Video = () => {
               <Center pt='20px'>
                 <VStack pr='10vw'>
                   <HStack pb='30px'>
-                    <Text fontSize='2xl' pr='10px'>Speed</Text>
+                    <Text fontSize='2xl' pr='10px'>Accuracy</Text>
                     <RingProgress />
                   </HStack>
                   <HumanBody />
                 </VStack>
                 <VStack pl='10vw'>
                   <HStack pb='30px'>
-                    <Text fontSize='2xl' pr='10px'>Accuracy</Text>
+                    <Text fontSize='2xl' pr='10px'>Speed</Text>
                     <RingProgress />
                   </HStack>
                   <HumanBody />
