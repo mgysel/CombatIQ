@@ -41,7 +41,7 @@ const BrowseVideo = () => {
         <TabPanels>
           <TabPanel>
             <Center>
-              <Grid templateColumns='repeat(3, 1fr)' gap={9}>
+              <Grid templateColumns='repeat(3, 1fr)' gap={9} pt='25px'>
                 <VideoCard />
                 <VideoCard />
                 <VideoCard />

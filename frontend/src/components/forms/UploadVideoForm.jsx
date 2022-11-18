@@ -27,23 +27,25 @@ const UploadVideoForm = () => {
   const [date, setDate] = useState('')
   const [opponent, setOpponent] = useState('')
 
+  const pt = '20px'
+
   return (
     <Flex w="100%" maxW="1366px" p="1rem" direction="column">
       <VideoInput width={400} height={300} />
-      <FormControl>
-        <FormLabel>Title</FormLabel>
+      <FormControl pt={pt}>
+        <FormLabel fontWeight={'bold'}>Title</FormLabel>
         <Input type='text' value={title} onChange={(e) => setTitle(e.target.value)} />
       </FormControl>
-      <FormControl>
-        <FormLabel>Date</FormLabel>
+      <FormControl pt={pt}>
+        <FormLabel fontWeight={'bold'}>Date</FormLabel>
         <Input type='datetime-local' value={date} onChange={(e) => setDate(e.target.value)} />
       </FormControl>
-      <FormControl>
-        <FormLabel>Opponent</FormLabel>
+      <FormControl pt={pt}>
+        <FormLabel fontWeight={'bold'}>Opponent</FormLabel>
         <Input type='text' value={opponent} onChange={(e) => setOpponent(e.target.value)} />
       </FormControl>
-      <Button colorScheme='teal' size='lg'>
-        Submit
+      <Button colorScheme='teal' size='lg' mt={pt}>
+        Upload
       </Button>
     </Flex>
   );

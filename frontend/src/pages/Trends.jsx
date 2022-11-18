@@ -42,42 +42,6 @@ const Trends = () => {
       onChange: setTabIndex,
     })
     const group = getRootProps()
-    const [graph, setGraph] = useState();
-
-    // What graph to render?
-    useEffect(() => {
-      if (tabIndex === 'Speed') {
-        console.log("Tab change to speed");
-        setGraph(
-        <MultiLine 
-          data={SpeedData} 
-          height={0.78*windowSize.innerHeight} 
-          width={0.72*windowSize.innerWidth} 
-          min={15}
-          yAxisTitle={'Speed (kph)'}
-        />)
-      } else if (tabIndex === 'Power') {
-        console.log("Tab change to Power");
-        setGraph(
-        <MultiLine 
-          data={PowerData} 
-          height={0.78*windowSize.innerHeight} 
-          width={0.72*windowSize.innerWidth} 
-          min={15}
-          yAxisTitle={'Power (psi)'}
-        />
-        )
-      } else if (tabIndex === 'Accuracy') {
-        console.log("Tab change to accuracy");
-        setGraph(<MultiLine 
-          data={AccuracyData} 
-          height={0.78*windowSize.innerHeight} 
-          width={0.72*windowSize.innerWidth} 
-          min={15}
-          yAxisTitle={'Accuracy (%)'}
-        />)
-      }
-    }, [tabIndex]);
   
   return (
 

@@ -17,7 +17,7 @@ const VideoCard = () => {
   let videoDate = 'Date'
   let videoDescription = 'This is the video description'
   let videoLength = '1:45'
-  let videoSrc = "https://www.youtube.com/embed/QhBnZ6NPOY0"
+  let videoSrc = "https://www.youtube.com/embed/sLTvQnjEkRU"
   
   return (
     <VStack pl='10px' pr='10px'>

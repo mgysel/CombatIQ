@@ -1,0 +1,77 @@
+[
+  {
+    "date": "2022-01-01",
+    "value": 23,
+    "category": "Overall"
+  },
+  {
+    "date": "2022-01-01",
+    "value": 21,
+    "category": "Left Hand"
+  },
+  {
+    "date": "2022-01-01",
+    "value": 21,
+    "category": "Right Hand"
+  },
+  {
+    "date": "2022-02-01",
+    "value": 24,
+    "category": "Overall"
+  },
+  {
+    "date": "2022-02-01",
+    "value": 24,
+    "category": "Left Hand"
+  },
+  {
+    "date": "2022-02-01",
+    "value": 27,
+    "category": "Right Hand"
+  },
+  {
+    "date": "2022-03-01",
+    "value": 24,
+    "category": "Overall"
+  },  
+  {
+    "date": "2022-03-01",
+    "value": 27,
+    "category": "Left Hand"
+  },
+  {
+    "date": "2022-03-01",
+    "value": 26,
+    "category": "Right Hand"
+  },
+  {
+    "date": "2022-04-01",
+    "value": 28,
+    "category": "Left Hand"
+  },
+  {
+    "date": "2022-04-01",
+    "value": 29,
+    "category": "Right Hand"
+  },
+  {
+    "date": "2022-04-01",
+    "value": 30,
+    "category": "Overall"
+  },
+  {
+    "date": "2022-05-01",
+    "value": 31,
+    "category": "Left Hand"
+  },
+  {
+    "date": "2022-05-01",
+    "value": 32,
+    "category": "Right Hand"
+  },
+  {
+    "date": "2022-05-01",
+    "value": 31,
+    "category": "Overall"
+  }
+]

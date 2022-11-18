@@ -43,17 +43,28 @@ const Video = () => {
   let videoDate = 'Date'
   let videoDescription = 'This is the video description'
   let videoLength = '1:45'
-  let videoSrc = "https://www.youtube.com/embed/QhBnZ6NPOY0"
+  let videoSrc = "https://www.youtube.com/embed/sLTvQnjEkRU"
 
   let [isPlaying, setIsPlaying] = React.useState(false);
   let aspectRatioInit = {
-    'maxW': '80vw',
+    'maxW': '1150px',
     'maxH': '150px'
   }
   let aspectRatioChange = {
-    'maxW': '650px',
-    'maxH': '650px'
+    'maxW': '700px',
+    'maxH': '450px'
   }
+
+  // For radio
+  const [tabIndex, setTabIndex] = useState(0)
+
+  const options = ['Overall', 'Cross', 'Jab', 'Lead Hook', 'Rear Hook', 'Uppercut']
+  const { getRootProps, getRadioProps } = useRadioGroup({
+    name: 'framework',
+    defaultValue: 'Overall',
+    onChange: console.log,
+  })
+  const group = getRootProps()
 
   const handleClick = () => {
     if (!isPlaying) {
@@ -65,41 +76,19 @@ const Video = () => {
     }
   }
 
-  const handlePlay = () => {
-    console.log("HANDLE PLAYING")
-  }
-
-  // For radio
-  const [tabIndex, setTabIndex] = useState(0)
-
-  const options = ['Overall', 'Right Punch', 'Left Punch', 'Right Kick', 'Left Kick']
-  const { getRootProps, getRadioProps } = useRadioGroup({
-    name: 'framework',
-    defaultValue: 'Overall',
-    onChange: console.log,
-  })
-  const group = getRootProps()
-
   return (
     <>
-      <Center>
-        <AspectRatio 
-          maxWidth={isPlaying? aspectRatioChange.maxW : aspectRatioInit.maxW}
-          maxHeight={isPlaying? aspectRatioChange.maxH : aspectRatioInit.maxH}
-          mt='15px' mb='15px' flex="1 1 auto" 
-        >
-          <Iframe
-            title={videoTitle}
-            src={videoSrc}
-            allowFullScreen
-            onClick={handleClick}
-            onPlay={handlePlay}
-            onInferredClick={handleClick}
-          />
-
-        </AspectRatio>
+      <Center pt='20px' pb='20px'>
+        <Iframe
+          title={videoTitle}
+          src={videoSrc}
+          allowFullScreen
+          onInferredClick={handleClick}
+          width={isPlaying? aspectRatioChange.maxW : aspectRatioInit.maxW}
+          height={isPlaying? aspectRatioChange.maxH : aspectRatioInit.maxH}
+        />
       </Center>
-      <Tabs variant='enclosed' pl='10vw' pr='10vw' onChange={(index) => setTabIndex(index)}>
+      <Tabs variant='enclosed' pl='10vw' pr='10vw' onChange={(index) => setTabIndex(index)} >
         <TabList>
           <Tab>Summary</Tab>
           <Tab>Fighter 1</Tab>

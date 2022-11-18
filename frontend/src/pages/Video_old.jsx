@@ -1,63 +1,114 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import {
-  Flex,
-  Heading,
-  VStack,
+  AspectRatio,
+  Center,
   Divider,
-} from "@chakra-ui/react";
-import VideoInput from '../components/VideoInput.jsx'
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
-import {
+  Flex,
+  Grid,
+  Heading,
+  HStack,
+  Image,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
-  MenuIcon,
-  MenuCommand
-} from '@chakra-ui/react'
-import { Button, Image } from "@chakra-ui/react";
-import { BodyComponent } from "reactjs-human-body";
-import { Stack, Text } from "@chakra-ui/react";
-import {
+  Radio,
+  RadioGroup,
+  Spacer,
+  Stack,
   Stat,
   StatLabel,
   StatNumber,
   StatHelpText,
   StatArrow,
   StatGroup,
-} from '@chakra-ui/react'
+  Tab,
+  Tabs,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Text,
+  useRadioGroup,
+  VStack,
+} from "@chakra-ui/react";
+import Iframe from 'react-iframe-click';
+import HumanBody from "../components/humanbody/HumanBody";
+import RadioCard from "../components/radio/RadioCard";
+import RingProgress from "../components/visualisations/RingProgress"
 
 const Video = () => {
 
-  const [params, setParams] = useState();
-  const exampleParams = {
-    head: { selected: true },
-    left_arm: { show: false }
-  }
-  
-  return (
-    <VStack>
-      <Heading align="center" my="1rem">
-        Please upload a video
-      </Heading>
-      <VideoInput width={400} height={300} />
-      <Tabs variant='enclosed'>
-        <TabList>
-          <Tab>Bio</Tab>
-          <Tab>Round 1</Tab>
-          <Tab>Round N</Tab>
-          <Tab>Overall</Tab>
-        </TabList>
+  let videoTitle = 'Video Title'
+  let videoDate = 'Date'
+  let videoDescription = 'This is the video description'
+  let videoLength = '1:45'
+  let videoSrc = "https://www.youtube.com/embed/sLTvQnjEkRU"
 
+  let [isPlaying, setIsPlaying] = React.useState(false);
+  let aspectRatioInit = {
+    'maxW': '80vw',
+    'maxH': '150px'
+  }
+  let aspectRatioChange = {
+    'maxW': '650px',
+    'maxH': '650px'
+  }
+
+  const handleClick = () => {
+    if (!isPlaying) {
+      setIsPlaying(true);
+      console.log("CHANGING isPLAYING TO TRUE")
+    } else {
+      setIsPlaying(false);
+      console.log("CHANGING isPLAYING TO FALSE")
+    }
+  }
+
+  const handlePlay = () => {
+    console.log("HANDLE PLAYING")
+  }
+
+  // For radio
+  const [tabIndex, setTabIndex] = useState(0)
+
+  const options = ['Overall', 'Right Punch', 'Left Punch', 'Right Kick', 'Left Kick']
+  const { getRootProps, getRadioProps } = useRadioGroup({
+    name: 'framework',
+    defaultValue: 'Overall',
+    onChange: console.log,
+  })
+  const group = getRootProps()
+
+  return (
+    <>
+      <Center>
+        <AspectRatio 
+          maxWidth={isPlaying? aspectRatioChange.maxW : aspectRatioInit.maxW}
+          maxHeight={isPlaying? aspectRatioChange.maxH : aspectRatioInit.maxH}
+          mt='15px' mb='15px' flex="1 1 auto" 
+        >
+          <Iframe
+            title={videoTitle}
+            src={videoSrc}
+            allowFullScreen
+            onClick={handleClick}
+            onPlay={handlePlay}
+            onInferredClick={handleClick}
+          />
+
+        </AspectRatio>
+      </Center>
+      <Tabs variant='enclosed' pl='10vw' pr='10vw' onChange={(index) => setTabIndex(index)}>
+        <TabList>
+          <Tab>Summary</Tab>
+          <Tab>Fighter 1</Tab>
+          <Tab>Fighter 2</Tab>
+        </TabList>
         <TabPanels>
           <TabPanel>
-            <Stack direction='row'>
-              <Image 
+          <Stack direction='row'>
+            <Image 
                 boxSize='100px'
                 src='https://img.bleacherreport.net/img/images/photos/002/098/618/AP11111909790_crop_exact.jpg?w=1200&h=1200&q=75' alt='Dan Abramov' />
               <Stack spacing={2}>
@@ -68,7 +119,6 @@ const Video = () => {
                 <Text fontSize='l'>Team: Chute Boxe Academy</Text>
               </Stack>
             </Stack>
-
             <StatGroup pt='50px'>
               <Stat>
                 <StatLabel>Number of Fight</StatLabel>
@@ -97,101 +147,44 @@ const Video = () => {
             </StatGroup>
           </TabPanel>
           <TabPanel>
-            <p>two!</p>
-            <div>
-              <BodyComponent
-                  partsInput={{
-                    head: { show: true },
-                    left_shoulder: { show: true },
-                    right_shoulder: { show: true },
-                    left_arm: { show: true },
-                    right_arm: { show: true },
-                    chest: { show: true },
-                    stomach: { show: true },
-                    left_leg: { show: true },
-                    right_leg: { show: true },
-                    left_hand: { show: true },
-                    right_hand: { show: true },
-                    left_foot: { show: true },
-                    right_foot: { show: true }
-                  }}
-                />
-            </div>
+            <VStack align='left'>
+              <HStack>
+                <Text fontSize='2xl' fontWeight='bold'>Choose Attack</Text>
+                <HStack {...group}>
+                  {options.map((value) => {
+                    const radio = getRadioProps({ value })
+                    return (
+                      <RadioCard key={value} {...radio}>
+                        {value}
+                      </RadioCard>
+                    )
+                  })}
+                </HStack>
+              </HStack>
+              <Center pt='20px'>
+                <VStack pr='10vw'>
+                  <HStack pb='30px'>
+                    <Text fontSize='2xl' pr='10px'>Accuracy</Text>
+                    <RingProgress />
+                  </HStack>
+                  <HumanBody />
+                </VStack>
+                <VStack pl='10vw'>
+                  <HStack pb='30px'>
+                    <Text fontSize='2xl' pr='10px'>Speed</Text>
+                    <RingProgress />
+                  </HStack>
+                  <HumanBody />
+                </VStack>
+              </Center>
+            </VStack>
           </TabPanel>
           <TabPanel>
-            <p>three!</p>
-            <div>
-              <BodyComponent
-                  partsInput={{
-                    head: { show: true },
-                    left_shoulder: { show: true },
-                    right_shoulder: { show: true },
-                    left_arm: { show: true },
-                    right_arm: { show: true },
-                    chest: { show: true },
-                    stomach: { show: true },
-                    left_leg: { show: true },
-                    right_leg: { show: true },
-                    left_hand: { show: true },
-                    right_hand: { show: true },
-                    left_foot: { show: true },
-                    right_foot: { show: true }
-                  }}
-                />
-            </div>
-          </TabPanel>
-          <TabPanel>
-            <p>Some introductions of this page</p>
-            <Menu>
-              <MenuButton as={Button} rightIcon='▾'>
-                Select a metric
-              </MenuButton>
-              <MenuList>
-                <MenuItem minH='48px'>
-                  <Image
-                    boxSize='2rem'
-                    borderRadius='full'
-                    src='https://placekitten.com/100/100'
-                    alt='Strikes'
-                    mr='12px'
-                  />
-                  <span>Strikes</span>
-                </MenuItem>
-                <MenuItem minH='40px'>
-                  <Image
-                    boxSize='2rem'
-                    borderRadius='full'
-                    src='https://placekitten.com/120/120'
-                    alt='Significant Strikes'
-                    mr='12px'
-                  />
-                  <span>Significant Strikes</span>
-                </MenuItem>
-              </MenuList>
-            </Menu>
-            <div>
-              <BodyComponent
-                  partsInput={{
-                    head: { show: true },
-                    left_shoulder: { show: true },
-                    right_shoulder: { show: true },
-                    left_arm: { show: true },
-                    right_arm: { show: true },
-                    chest: { show: true },
-                    stomach: { show: true },
-                    left_leg: { show: true },
-                    right_leg: { show: true },
-                    left_hand: { show: true },
-                    right_hand: { show: true },
-                    left_foot: { show: true },
-                    right_foot: { show: true }
-                  }}
-                />
-            </div>
+            <p>Three</p>
           </TabPanel>
         </TabPanels>
       </Tabs>
-    </VStack>
+    </>
   );
 };
 
