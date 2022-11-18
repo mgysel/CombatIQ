@@ -4,6 +4,7 @@ import {
   Box,
   Flex,
   Heading,
+  Text,
   useRadio,
   useRadioGroup,
   VStack,
@@ -23,6 +24,7 @@ const RadioCard = (props) => {
       <input {...input} />
       <Box
         {...checkbox}
+        width={props.width}
         cursor='pointer'
         borderWidth='1px'
         borderRadius='md'
@@ -37,8 +39,11 @@ const RadioCard = (props) => {
         }}
         px={5}
         py={3}
+        verticalAlign='middle'
       >
-        {props.children}
+        <Text pb={props.p} pt={props.p}>
+          {props.children}
+        </Text>
       </Box>
     </Box>
   );
