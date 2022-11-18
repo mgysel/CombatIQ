@@ -57,6 +57,14 @@ const Navbar = () => {
         >
           Videos
         </Heading>
+        <Heading
+          as={RouterLink}
+          to={"/training"}
+          minW="max-content"
+          padding={navPadding}
+        >
+          Training
+        </Heading>
       </Flex>
     </Flex>
   );
