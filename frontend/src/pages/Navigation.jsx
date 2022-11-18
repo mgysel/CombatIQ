@@ -4,6 +4,7 @@ import Profile from "./Profile";
 import Trends from "./Trends";
 import Video from "./Video";
 import Fighter from "./Fighter";
+import Training from "./Training";
 import BrowseVideo from "../components/video/BrowseVideo";
 
 const Navigation = () => {
@@ -23,6 +24,9 @@ const Navigation = () => {
       </Route>
       <Route exact path="/browsevideo">
         <BrowseVideo />
+      </Route>
+      <Route exact path="/training">
+        <Training />
       </Route>
     </Switch>
   );
