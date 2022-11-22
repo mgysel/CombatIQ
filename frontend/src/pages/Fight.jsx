@@ -28,6 +28,7 @@ import FighterCard from './fight/FighterCard.jsx'
 import UploadVideoModal from './fight/UploadVideoModal.jsx'
 import ChooseFightMenu from './fight/ChooseFightMenu.jsx'
 import AccuracyVis from './fight/AccuracyVis.jsx'
+import Heatmap from './fight/Heatmap.jsx'
 
 const Fight = () => {
 
@@ -126,7 +127,6 @@ const Fight = () => {
       </Center>
       <VStack
         mt='20px' ml='10vw' mr='10vw' 
-        pb='40px'
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
       >
         <Text fontSize='3xl' pt='10px'>Accuracy</Text>
@@ -138,7 +138,7 @@ const Fight = () => {
         </HStack>
       </VStack>
       <Center 
-        mt='20px' mb='40px' ml='10vw' mr='10vw' 
+        mt='20px' ml='10vw' mr='10vw' 
         pt='10px' pb='20px'
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
       >
@@ -147,6 +147,26 @@ const Fight = () => {
           fighter2={fighter2}
         />
       </Center>
+      <VStack
+        mt='20px' ml='10vw' mr='10vw' mb='40px'
+        pb='40px'
+        borderWidth='1px' borderRadius='lg' overflow='hidden' 
+      >
+        <Text fontSize='3xl' pt='10px' pb='10px'>Positioning</Text>
+        <Grid templateColumns='repeat(2, 10fr)' gap={100}>
+          <VStack>
+            <Text fontSize='2xl' pr='10px' pb='10px'>{fighter1.name} Positioning</Text>
+            <Heatmap />
+          </VStack>
+          <VStack>
+            <Text fontSize='2xl' pr='10px' pb='10px'>{fighter2.name} Positioning</Text>
+            <Heatmap />
+          </VStack>
+        </Grid>
+        
+      </VStack>
+
+      
     </>
   );
 };
