@@ -43,19 +43,11 @@ const Navbar = () => {
         </Heading>
         <Heading
           as={RouterLink}
-          to={"/video"}
+          to={"/fight"}
           minW="max-content"
           padding={navPadding}
         >
-          Video
-        </Heading>
-        <Heading
-          as={RouterLink}
-          to={"/browsevideo"}
-          minW="max-content"
-          padding={navPadding}
-        >
-          Videos
+          Fight
         </Heading>
         <Heading
           as={RouterLink}
@@ -64,6 +56,14 @@ const Navbar = () => {
           padding={navPadding}
         >
           Training
+        </Heading>
+        <Heading
+          as={RouterLink}
+          to={"/browsevideo"}
+          minW="max-content"
+          padding={navPadding}
+        >
+          All Videos
         </Heading>
       </Flex>
     </Flex>

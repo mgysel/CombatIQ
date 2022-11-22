@@ -50,7 +50,7 @@ const Training = () => {
   let videoDate = 'Date'
   let videoDescription = 'This is the video description'
   let videoLength = '1:45'
-  let videoSrc = "https://www.youtube.com/embed/QhBnZ6NPOY0"
+  let videoSrc = "https://www.youtube.com/embed/sLTvQnjEkRU"
 
   let [isPlaying, setIsPlaying] = React.useState(false);
   let aspectRatioInit = {
