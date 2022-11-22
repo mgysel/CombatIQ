@@ -29,7 +29,7 @@ import UploadVideoModal from './fight/UploadVideoModal.jsx'
 import ChooseFightMenu from './fight/ChooseFightMenu.jsx'
 import AccuracyVis from './fight/AccuracyVis.jsx'
 
-const NewFight = () => {
+const Fight = () => {
 
   // Handle data 
   const fighter1 = {
@@ -124,16 +124,19 @@ const NewFight = () => {
           </Flex>
         </HStack>
       </Center>
-      <Flex 
+      <VStack
         mt='20px' ml='10vw' mr='10vw' 
-        pb='40px' pl='6.5vw'
+        pb='40px'
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
       >
-        <AccuracyVis
-          fighter1={fighter1}
-          fighter2={fighter2}
-        />
-      </Flex>
+        <Text fontSize='3xl' pt='10px'>Accuracy</Text>
+        <HStack pl='1vw'>
+          <AccuracyVis
+            fighter1={fighter1}
+            fighter2={fighter2}
+          />
+        </HStack>
+      </VStack>
       <Center 
         mt='20px' mb='40px' ml='10vw' mr='10vw' 
         pt='10px' pb='20px'
@@ -148,4 +151,4 @@ const NewFight = () => {
   );
 };
 
-export default NewFight;
+export default Fight;

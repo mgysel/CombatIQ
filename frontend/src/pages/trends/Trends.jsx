@@ -9,12 +9,12 @@ import {
   useRadioGroup,
   VStack,
 } from "@chakra-ui/react";
-import MultiLine from "../components/visualisations/MultiLine";
-import Sidebar from "../components/sidebar/Sidebar";
-import RadioCard from "../components/radio/RadioCard";
-import SpeedData from "../dummy_data/speed.json";
-import PowerData from "../dummy_data/power.json";
-import AccuracyData from "../dummy_data/accuracy.json";
+import MultiLine from "../../components/visualisations/MultiLine";
+import Sidebar from "../../components/sidebar/Sidebar";
+import RadioCard from "../../components/radio/RadioCard";
+import SpeedData from "../../dummy_data/speed.json";
+import PowerData from "../../dummy_data/power.json";
+import AccuracyData from "../../dummy_data/accuracy.json";
 
 const Trends = () => {
     // Window size for graph size
@@ -48,11 +48,11 @@ const Trends = () => {
       <Flex pt='5vh'>
         <VStack pt='10px'>
           <HStack alignItems='top'>
-            <VStack {...group} pl='2vw' pr='50px' pt='70px'>
+            <VStack {...group} pl='1vw' pr='30px' pt='70px'>
               {options.map((value) => {
                 const radio = getRadioProps({ value })
                 return (
-                  <RadioCard key={value} p={'6px'} width={'240px'} {...radio}>
+                  <RadioCard key={value} p={'0px'} width={'150px'} {...radio}>
                     <Center>
                     {value}
                     </Center>
@@ -63,8 +63,8 @@ const Trends = () => {
             {tabIndex==='Speed' && 
             <MultiLine 
               data={SpeedData} 
-              height={0.78*windowSize.innerHeight} 
-              width={0.72*windowSize.innerWidth} 
+              height={0.7*windowSize.innerHeight} 
+              width={0.62*windowSize.innerWidth} 
               min={15}
               yAxisTitle={'Speed (kph)'}
             />
@@ -72,8 +72,8 @@ const Trends = () => {
             {tabIndex==='Power' &&
             <MultiLine 
               data={PowerData} 
-              height={0.78*windowSize.innerHeight} 
-              width={0.72*windowSize.innerWidth} 
+              height={0.7*windowSize.innerHeight} 
+              width={0.62*windowSize.innerWidth} 
               min={500}
               yAxisTitle={'Power (psi)'}
             />
@@ -81,8 +81,8 @@ const Trends = () => {
             {tabIndex==='Accuracy' &&
             <MultiLine 
               data={AccuracyData} 
-              height={0.78*windowSize.innerHeight} 
-              width={0.72*windowSize.innerWidth} 
+              height={0.7*windowSize.innerHeight} 
+              width={0.62*windowSize.innerWidth} 
               min={15}
               yAxisTitle={'Accuracy (%)'}
             />

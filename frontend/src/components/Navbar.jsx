@@ -35,14 +35,6 @@ const Navbar = () => {
         </Heading>
         <Heading
           as={RouterLink}
-          to={"/trends"}
-          minW="max-content"
-          padding={navPadding}
-        >
-          Trends
-        </Heading>
-        <Heading
-          as={RouterLink}
           to={"/fight"}
           minW="max-content"
           padding={navPadding}

@@ -1,11 +1,10 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Profile from "./Profile";
-import Trends from "./Trends";
 import Video from "./Video";
 import Fighter from "./Fighter";
-import Training from "./Training";
-import NewFight from "./NewFight";
+import Training from "./Training.jsx";
+import Fight from "./Fight";
 import BrowseVideo from "../components/video/BrowseVideo";
 
 const Navigation = () => {
@@ -14,11 +13,8 @@ const Navigation = () => {
       <Route exact path="/">
         <Profile />
       </Route>
-      <Route exact path="/trends">
-        <Trends />
-      </Route>
       <Route exact path="/fight">
-        <NewFight />
+        <Fight />
       </Route>
       <Route exact path="/fighter/:fighter-id">
         <Fighter />
