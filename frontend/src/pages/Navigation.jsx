@@ -5,6 +5,7 @@ import Trends from "./Trends";
 import Video from "./Video";
 import Fighter from "./Fighter";
 import Training from "./Training";
+import NewFight from "./NewFight";
 import BrowseVideo from "../components/video/BrowseVideo";
 
 const Navigation = () => {
@@ -16,8 +17,8 @@ const Navigation = () => {
       <Route exact path="/trends">
         <Trends />
       </Route>
-      <Route exact path="/video">
-        <Video />
+      <Route exact path="/fight">
+        <NewFight />
       </Route>
       <Route exact path="/fighter/:fighter-id">
         <Fighter />
