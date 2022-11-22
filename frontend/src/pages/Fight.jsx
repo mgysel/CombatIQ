@@ -127,6 +127,7 @@ const Fight = () => {
       </Center>
       <VStack
         mt='20px' ml='10vw' mr='10vw' 
+        pb='30px'
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
       >
         <Text fontSize='3xl' pt='10px'>Accuracy</Text>
