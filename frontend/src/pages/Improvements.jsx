@@ -21,7 +21,6 @@ const Improvements = () => {
       <Heading align="center" my="1rem">
         Improvements
       </Heading>
-
       <MultiLine />
     </Flex>
   );

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   Center,
+  Grid,
   HStack,
   VStack,
   Text,
@@ -25,34 +26,34 @@ const AccuracyVis = (props) => {
 
   return (
     <VStack>
-      <Center pt='20px'>
+      <Grid templateColumns='repeat(2, 1fr)' gap={20} pl='12vw'>
         <VStack pr='10vw'>
           <HStack pb='30px'>
-            <Text fontSize='2xl' pr='10px'>{props.fighter1.name} Accuracy</Text>
+            <Text fontSize='1xl' pr='10px'>{props.fighter1.name}</Text>
             <RingProgress />
           </HStack>
           <HumanBody />
         </VStack>
         <VStack pl='10vw'>
           <HStack pb='30px'>
-            <Text fontSize='2xl' pr='10px'>{props.fighter2.name} Accuracy</Text>
+            <Text fontSize='1xl' pr='10px'>{props.fighter2.name}</Text>
             <RingProgress />
           </HStack>
           <HumanBody />
         </VStack>
-      </Center>
+      </Grid>
       <Center>
-      <HStack pt='260px'>
-        <Text fontSize='2xl' pr='10px'>Choose Attack</Text>
-        <HStack {...group}>
-          {options.map((value) => {
-            const radio = getRadioProps({ value })
-            return (
-              <RadioCard key={value} {...radio}>
-                {value}
-              </RadioCard>
-            )
-          })}
+        <HStack pt='260px'>
+          <Text fontSize='1xl' pr='10px'>Choose Attack</Text>
+          <HStack {...group}>
+            {options.map((value) => {
+              const radio = getRadioProps({ value })
+              return (
+                <RadioCard key={value} {...radio}>
+                  {value}
+                </RadioCard>
+              )
+            })}
           </HStack>
         </HStack>.
       </Center>

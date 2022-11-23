@@ -56,7 +56,6 @@ src='https://img.bleacherreport.net/img/images/photos/002/098/618/AP11111909790_
 const Summary = (props) => {
   return (
     <VStack>
-      <Text fontSize='3xl' pb='10px'>Comparison</Text>
       <AntBidirectional 
         fighter1={props.fighter1}
         fighter2={props.fighter2}

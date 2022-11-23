@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import {
-  AspectRatio,
-  Button,
+  Box,
   Center,
   Divider,
   Flex,
@@ -93,81 +92,80 @@ const Fight = () => {
           height={isPlaying? aspectRatioChange.maxH : aspectRatioInit.maxH}
         />
       </Center>
-      <Center 
-        pt='20px' pb='20px'
-        ml='10vw' mr='10vw' 
+      <Box
+        mt='0px' ml='10vw' mr='10vw' 
+        p='20px'
+        pt='10px'
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
       >
-        <HStack>
-          <Flex pr='70px'>
-            <FighterCard 
-              src={fighter1.image} 
-              name={fighter1.name} 
-              ethnicity={fighter1.ethnicity}
-              sex={fighter1.sex} 
-              age={fighter1.age} 
-              height={fighter1.height} 
-              weight={fighter1.weight}
-              team={fighter1.team}
-            />
-          </Flex>
-          <Flex pl='70px'>
-            <FighterCard 
-              src={fighter2.image} 
-              name={fighter2.name} 
-              ethnicity={fighter2.ethnicity}
-              sex={fighter2.sex} 
-              age={fighter2.age} 
-              height={fighter2.height} 
-              weight={fighter2.weight}
-              team={fighter2.team}
-            />
-          </Flex>
-        </HStack>
-      </Center>
-      <VStack
+        <Text fontSize='2xl' pb='10px'>Bio</Text>
+        <Grid templateColumns='repeat(2, 1fr)' gap={6}>
+          <FighterCard 
+            src={fighter1.image} 
+            name={fighter1.name} 
+            ethnicity={fighter1.ethnicity}
+            sex={fighter1.sex} 
+            age={fighter1.age} 
+            height={fighter1.height} 
+            weight={fighter1.weight}
+            team={fighter1.team}
+          />
+          <FighterCard 
+            src={fighter2.image} 
+            name={fighter2.name} 
+            ethnicity={fighter2.ethnicity}
+            sex={fighter2.sex} 
+            age={fighter2.age} 
+            height={fighter2.height} 
+            weight={fighter2.weight}
+            team={fighter2.team}
+          />
+        </Grid>
+      </Box>
+      <Box
         mt='20px' ml='10vw' mr='10vw' 
-        pb='30px'
+        p='20px'
+        pt='10px'
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
       >
-        <Text fontSize='3xl' pt='10px'>Accuracy</Text>
-        <HStack pl='1vw'>
+        <Text fontSize='2xl' pb='10px'>Accuracy</Text>
+        <Grid templateColumns='repeat(2, 1fr)' gap={200}>
           <AccuracyVis
             fighter1={fighter1}
             fighter2={fighter2}
           />
-        </HStack>
-      </VStack>
-      <Center 
+        </Grid>
+      </Box>
+      <Box 
         mt='20px' ml='10vw' mr='10vw' 
-        pt='10px' pb='20px'
+        p='20px'
+        pt='10px'
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
       >
+        <Text fontSize='2xl' pb='10px'>Comparison</Text>
         <Summary 
           fighter1={fighter1}
           fighter2={fighter2}
         />
-      </Center>
-      <VStack
+      </Box>
+      <Box
         mt='20px' ml='10vw' mr='10vw' mb='40px'
-        pb='40px'
+        p='20px'
+        pt='10px'
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
       >
-        <Text fontSize='3xl' pt='10px' pb='10px'>Positioning</Text>
+        <Text fontSize='2xl' pb='10px'>Positioning</Text>
         <Grid templateColumns='repeat(2, 10fr)' gap={100}>
           <VStack>
-            <Text fontSize='2xl' pr='10px' pb='10px'>{fighter1.name} Positioning</Text>
+            <Text fontSize='1xl' pr='10px' pb='10px'>{fighter1.name}</Text>
             <Heatmap />
           </VStack>
           <VStack>
-            <Text fontSize='2xl' pr='10px' pb='10px'>{fighter2.name} Positioning</Text>
+            <Text fontSize='1xl' pr='10px' pb='10px'>{fighter2.name}</Text>
             <Heatmap />
           </VStack>
         </Grid>
-        
-      </VStack>
-
-      
+      </Box>
     </>
   );
 };
