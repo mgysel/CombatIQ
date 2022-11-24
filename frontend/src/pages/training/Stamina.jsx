@@ -12,11 +12,11 @@ import {
 import MultiLine from "../../components/visualisations/MultiLine";
 import Sidebar from "../../components/sidebar/Sidebar";
 import RadioCard from "../../components/radio/RadioCard";
-import SpeedData from "../../dummy_data/speed.json";
-import PowerData from "../../dummy_data/power.json";
+import SpeedData from "../../dummy_data/training/speed.json";
+import PowerData from "../../dummy_data/training/power.json";
 import AccuracyData from "../../dummy_data/accuracy.json";
 
-const Trends = () => {
+const Stamina = () => {
     // Window size for graph size
     const [windowSize, setWindowSize] = useState(getWindowSize());
     function getWindowSize() {
@@ -35,7 +35,7 @@ const Trends = () => {
 
     // For radio
     const [tabIndex, setTabIndex] = useState('Speed')
-    const options = ['Speed', 'Power', 'Accuracy']
+    const options = ['Speed', 'Power']
     const { getRootProps, getRadioProps } = useRadioGroup({
       name: 'framework',
       defaultValue: 'Speed',
@@ -66,6 +66,7 @@ const Trends = () => {
               height={0.7*windowSize.innerHeight} 
               width={0.62*windowSize.innerWidth} 
               min={15}
+              xAxisTitle={'Time (seconds)'}
               yAxisTitle={'Speed (kph)'}
             />
             }
@@ -75,16 +76,8 @@ const Trends = () => {
               height={0.7*windowSize.innerHeight} 
               width={0.62*windowSize.innerWidth} 
               min={500}
+              xAxisTitle={' Time (seconds)'}
               yAxisTitle={'Power (psi)'}
-            />
-            }
-            {tabIndex==='Accuracy' &&
-            <MultiLine 
-              data={AccuracyData} 
-              height={0.7*windowSize.innerHeight} 
-              width={0.62*windowSize.innerWidth} 
-              min={15}
-              yAxisTitle={'Accuracy (%)'}
             />
             }
           </HStack>
@@ -95,4 +88,4 @@ const Trends = () => {
   );
 };
 
-export default Trends;
+export default Stamina;

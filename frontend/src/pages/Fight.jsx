@@ -31,6 +31,8 @@ import Heatmap from './fight/Heatmap.jsx'
 
 const Fight = () => {
 
+  
+
   // Handle data 
   const fighter1 = {
     'image': 'https://img.bleacherreport.net/img/images/photos/002/098/618/AP11111909790_crop_exact.jpg?w=1200&h=1200&q=75',

@@ -11,47 +11,38 @@ import {
 } from '@chakra-ui/react';
 import { CheckCircleIcon, WarningTwoIcon } from '@chakra-ui/icons'
 import {
-  List,
-  ListItem,
-  ListIcon,
-  OrderedList,
-  UnorderedList,
-  StackDivider,
-  AspectRatio,
+  Box,
   Center,
+  Flex,
   HStack,
+  Radio,
+  RadioGroup,
+  Stack,
   Stat,
   StatLabel,
   StatNumber,
   StatHelpText,
-  Table,
-  Thead,
-  Tbody,
-  Tfoot,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
-  TableContainer,
   Text,
-  Box,
 } from "@chakra-ui/react";
 import Iframe from 'react-iframe-click';
 import UploadVideoModal from './fight/UploadVideoModal.jsx';
 import ChooseFightMenu from './fight/ChooseFightMenu.jsx';
-import Trends from './trends/Trends.jsx';
+import Trends from './training/Stamina.jsx';
+import AnalysisData from '../dummy_data/training/analysis.json'
+import Analysis from './training/Analysis.jsx';
 
 const Training = () => {
 
   // Data 
   const summary = {
-    'speed': '45',
-    'rhythm': '45',
-    'power': '32'
+    'time': '2',
+    'stamina': '55',
+    'strikes': '45',
+    'sigstrikes': '22',
+    'jabs': '12',
+    'hooks': '8',
+    'uppercuts': '7',
   }
-
-  // Styling
-  let backgroundColor = '#B2F5EA'
 
   let videoTitle = 'Video Title'
   let videoSrc = "https://www.youtube.com/embed/sLTvQnjEkRU"
@@ -99,22 +90,37 @@ const Training = () => {
         pt='10px'
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
       >
-        <Text fontSize='2xl' pb='10px'>Summary</Text>
-        <HStack spacing='24px' width='300px'>
-          <Stat ml='10px'>
-            <StatLabel>Speed</StatLabel>
-            <StatNumber>{summary.speed}</StatNumber>
-            <StatHelpText>kph</StatHelpText>
+        <Text fontSize='2xl'>Summary</Text>
+        <HStack spacing='20px' width='800px'>
+          <Stat ml='10px' align='center'>
+            <StatLabel mt='27px'>Time</StatLabel>
+            <StatNumber>{summary.time}</StatNumber>
+            <StatHelpText>mins</StatHelpText>
           </Stat>
-          <Stat>
-            <StatLabel>Power</StatLabel>
-            <StatNumber>{summary.power}</StatNumber>
-            <StatHelpText>psi</StatHelpText>
+          <Stat align='center'>
+            <StatLabel mt='27px'>Stamina</StatLabel>
+            <StatNumber>{summary.stamina}</StatNumber>
+            <StatHelpText>strikes/min</StatHelpText>
           </Stat>
-          <Stat>
-            <StatLabel>Rhythm</StatLabel>
-            <StatNumber>{summary.rhythm}</StatNumber>
-            <StatHelpText>unit</StatHelpText>
+          <Stat align='center'>
+            <StatLabel>Strikes</StatLabel>
+            <StatNumber>{summary.strikes}</StatNumber>
+          </Stat>
+          <Stat align='center'>
+            <StatLabel width='120px'>Significant Strikes</StatLabel>
+            <StatNumber>{summary.sigstrikes}</StatNumber>
+          </Stat>
+          <Stat align='center'>
+            <StatLabel>Jabs</StatLabel>
+            <StatNumber>{summary.jabs}</StatNumber>
+          </Stat>
+          <Stat align='center'>
+            <StatLabel>Hooks</StatLabel>
+            <StatNumber>{summary.hooks}</StatNumber>
+          </Stat>
+          <Stat align='center'>
+            <StatLabel>Uppercuts</StatLabel>
+            <StatNumber>{summary.uppercuts}</StatNumber>
           </Stat>
         </HStack>
       </Box>
@@ -126,64 +132,7 @@ const Training = () => {
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
       >
         <Text fontSize='2xl' pb='10px'>Analysis</Text>
-        <TableContainer>
-          <Table>
-            <TableCaption>Table Caption?</TableCaption>
-            <Thead>
-              <Tr>
-                <Th></Th>
-                <Th>Speed (kph)</Th>
-                <Th isNumeric>Power (psi)</Th>
-                <Th isNumeric>Rhythm (units)</Th>
-                <Th isNumeric>Position (units)</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              <Tr backgroundColor={backgroundColor}>
-                <Td>Left Hand</Td>
-                <Td>Average</Td>
-                <Td isNumeric>25.4</Td>
-                <Td isNumeric>25.4</Td>
-                <Td isNumeric>25.4</Td>
-              </Tr>
-              <Tr>
-                <Td></Td>
-                <Td>Max</Td>
-                <Td isNumeric>30.48</Td>
-                <Td isNumeric>30.48</Td>
-                <Td isNumeric>30.48</Td>
-              </Tr>
-              <Tr>
-                <Td></Td>
-                <Td>Min</Td>
-                <Td isNumeric>0.91444</Td>
-                <Td isNumeric>0.91444</Td>
-                <Td isNumeric>0.91444</Td>
-              </Tr>
-              <Tr backgroundColor={backgroundColor}>
-                <Td>Right Hand</Td>
-                <Td>Average</Td>
-                <Td isNumeric>25.4</Td>
-                <Td isNumeric>25.4</Td>
-                <Td isNumeric>25.4</Td>
-              </Tr>
-              <Tr>
-                <Td></Td>
-                <Td>Max</Td>
-                <Td isNumeric>30.48</Td>
-                <Td isNumeric>30.48</Td>
-                <Td isNumeric>30.48</Td>
-              </Tr>
-              <Tr>
-                <Td></Td>
-                <Td>Min</Td>
-                <Td isNumeric>0.91444</Td>
-                <Td isNumeric>0.91444</Td>
-                <Td isNumeric>0.91444</Td>
-              </Tr>
-            </Tbody>
-          </Table>
-        </TableContainer>
+        <Analysis />
       </Box>
 
       <Box
@@ -192,7 +141,7 @@ const Training = () => {
         pt='10px'
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
       >
-        <Text fontSize='2xl' pb='10px'>Trends</Text>
+        <Text fontSize='2xl' pb='10px'>Stamina</Text>
         <Trends />
       </Box>
     </>
