@@ -7,7 +7,7 @@ import {
   useRadioGroup,
   VStack,
 } from "@chakra-ui/react";
-import StatTable from './StatTable.jsx';
+import StatTable from './TrainingStatTable.jsx';
 import AnalysisData from '../../dummy_data/training/analysis.json';
 import RadioCard from "../../components/radio/RadioCard";
 

@@ -14,10 +14,6 @@ import {
   Box,
   Center,
   HStack,
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
   Text,
 } from "@chakra-ui/react";
 import Iframe from 'react-iframe-click';
@@ -25,6 +21,7 @@ import UploadVideoModal from './fight/UploadVideoModal.jsx';
 import ChooseFightMenu from './fight/ChooseFightMenu.jsx';
 import Stamina from './training/Stamina.jsx';
 import Analysis from './training/Analysis.jsx';
+import TrainingStatBox from './training/TrainingStatBox.jsx';
 
 const Training = () => {
 
@@ -86,38 +83,7 @@ const Training = () => {
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
       >
         <Text fontSize='2xl'>Summary</Text>
-        <HStack spacing='20px' width='800px'>
-          <Stat ml='10px' align='center'>
-            <StatLabel mt='27px'>Time</StatLabel>
-            <StatNumber>{summary.time}</StatNumber>
-            <StatHelpText>mins</StatHelpText>
-          </Stat>
-          <Stat align='center'>
-            <StatLabel mt='27px'>Stamina</StatLabel>
-            <StatNumber>{summary.stamina}</StatNumber>
-            <StatHelpText>strikes/min</StatHelpText>
-          </Stat>
-          <Stat align='center'>
-            <StatLabel>Strikes</StatLabel>
-            <StatNumber>{summary.strikes}</StatNumber>
-          </Stat>
-          <Stat align='center'>
-            <StatLabel width='120px'>Significant Strikes</StatLabel>
-            <StatNumber>{summary.sigstrikes}</StatNumber>
-          </Stat>
-          <Stat align='center'>
-            <StatLabel>Jabs</StatLabel>
-            <StatNumber>{summary.jabs}</StatNumber>
-          </Stat>
-          <Stat align='center'>
-            <StatLabel>Hooks</StatLabel>
-            <StatNumber>{summary.hooks}</StatNumber>
-          </Stat>
-          <Stat align='center'>
-            <StatLabel>Uppercuts</StatLabel>
-            <StatNumber>{summary.uppercuts}</StatNumber>
-          </Stat>
-        </HStack>
+        <TrainingStatBox data={summary} />
       </Box>
 
       <Box

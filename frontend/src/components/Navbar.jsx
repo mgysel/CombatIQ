@@ -26,6 +26,7 @@ import {
 } from '@chakra-ui/icons';
 import { Link as RouterLink } from "react-router-dom";
 import { FaUser, FaShoppingCart } from "react-icons/fa";
+import { useHistory ,useLocation } from 'react-router-dom';
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
@@ -65,51 +66,76 @@ const DesktopNav = () => {
   const linkHoverColor = useColorModeValue('gray.400', 'white');
   const popoverContentBgColor = useColorModeValue('white', 'gray.800');
 
+  const location = useLocation()
+  console.log(location.pathname)
+
+  function getColor(nav) {
+    if (location.pathname === nav) {
+      return linkHoverColor
+    } else {
+      return linkColor
+    }
+  }
+
   return (
     <Stack direction={'row'} spacing={4}>
-      {NAV_ITEMS.map((navItem) => (
-        <Box key={navItem.label} pt='10px'>
+        <Box pt='10px'>
           <Popover trigger={'hover'} placement={'bottom-start'}>
             <PopoverTrigger>
               <Link
                 p={2}
                 as={RouterLink}
-                to={navItem.href}
+                to={'/fights'}
                 fontSize={'md'}
                 fontWeight={500}
-                color={linkColor}
+                color={getColor('/fights')}
                 _hover={{
                   textDecoration: 'none',
                   color: linkHoverColor,
                 }}>
-                {navItem.label}
+                Fights
               </Link>
             </PopoverTrigger>
           </Popover>
         </Box>
-      ))}
+        <Box pt='10px'>
+          <Popover trigger={'hover'} placement={'bottom-start'}>
+            <PopoverTrigger>
+              <Link
+                p={2}
+                as={RouterLink}
+                to={'/training'}
+                fontSize={'md'}
+                fontWeight={500}
+                color={getColor('/training')}
+                _hover={{
+                  textDecoration: 'none',
+                  color: linkHoverColor,
+                }}>
+                Training
+              </Link>
+            </PopoverTrigger>
+          </Popover>
+        </Box>
+        <Box pt='10px'>
+          <Popover trigger={'hover'} placement={'bottom-start'}>
+            <PopoverTrigger>
+              <Link
+                p={2}
+                as={RouterLink}
+                to={'/trends'}
+                fontSize={'md'}
+                fontWeight={500}
+                color={getColor('/trends')}
+                _hover={{
+                  textDecoration: 'none',
+                  color: linkHoverColor,
+                }}>
+                Trends
+              </Link>
+            </PopoverTrigger>
+          </Popover>
+        </Box>
     </Stack>
   );
 };
-
-interface NavItem {
-  label: string;
-  subLabel?: string;
-  children?: Array<NavItem>;
-  href?: string;
-}
-
-const NAV_ITEMS: Array<NavItem> = [
-  {
-    label: 'Fights',
-    href: '/fights'
-  },
-  {
-    label: 'Training',
-    href: '/training',
-  },
-  {
-    label: 'Trends',
-    href: '/trends',
-  },
-];

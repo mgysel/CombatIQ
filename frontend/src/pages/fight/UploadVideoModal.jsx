@@ -21,8 +21,6 @@ import VideoInput from '../../components/video/VideoInput.jsx'
 const UploadVideoModal = (props) => {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const initialRef = React.useRef(null)
-  const finalRef = React.useRef(null)
 
   const [title, setTitle] = useState('')
   const [date, setDate] = useState('')
@@ -34,8 +32,6 @@ const UploadVideoModal = (props) => {
     <>
       <Button onClick={onOpen}>{props.button_text}</Button>
       <Modal
-        initialFocusRef={initialRef}
-        finalFocusRef={finalRef}
         isOpen={isOpen}
         onClose={onClose}
       >

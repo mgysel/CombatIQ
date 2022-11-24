@@ -51,7 +51,7 @@ const Heatmap = (props) => {
           color: '#2C7A7B'
         })}
         cellStyle={(_x, _y, ratio) => ({
-          background: `rgb(245, 101, 101, ${ratio})`,
+          background: `rgb(0, 0, 0, ${ratio})`,
           fontSize: '0rem',
           color: `rgb(0, 0, 0, ${ratio / 2 + 0.4})`
         })}

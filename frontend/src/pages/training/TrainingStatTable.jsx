@@ -12,7 +12,7 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 
-const StatTable = (props) => {
+const TrainingStatTable = (props) => {
 
   const [data, setData] = useState(props.data);
   console.log(data)
@@ -82,4 +82,4 @@ const StatTable = (props) => {
   );
 };
 
-export default StatTable;
+export default TrainingStatTable;

@@ -78,6 +78,20 @@ const Fight = () => {
     }
   }
 
+  // Comparison graph commented out
+  //   <Box 
+  //   mt='20px' ml='10vw' mr='10vw' 
+  //   p='20px'
+  //   pt='10px'
+  //   borderWidth='1px' borderRadius='lg' overflow='hidden' 
+  // >
+  //   <Text fontSize='2xl' pb='10px'>Comparison</Text>
+  //   <Summary 
+  //     fighter1={fighter1}
+  //     fighter2={fighter2}
+  //   />
+  // </Box>
+
   return (
     <>
       <HStack pt='20px' pl='11vw'>
@@ -130,25 +144,13 @@ const Fight = () => {
         pt='10px'
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
       >
-        <Text fontSize='2xl' pb='10px'>Accuracy</Text>
+        <Text fontSize='2xl' pb='10px'>Comparison</Text>
         <Grid templateColumns='repeat(2, 1fr)' gap={200}>
           <AccuracyVis
             fighter1={fighter1}
             fighter2={fighter2}
           />
         </Grid>
-      </Box>
-      <Box 
-        mt='20px' ml='10vw' mr='10vw' 
-        p='20px'
-        pt='10px'
-        borderWidth='1px' borderRadius='lg' overflow='hidden' 
-      >
-        <Text fontSize='2xl' pb='10px'>Comparison</Text>
-        <Summary 
-          fighter1={fighter1}
-          fighter2={fighter2}
-        />
       </Box>
       <Box
         mt='20px' ml='10vw' mr='10vw' mb='40px'
