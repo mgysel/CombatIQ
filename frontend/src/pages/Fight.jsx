@@ -43,6 +43,7 @@ const Fight = () => {
     'height': '180',
     'weight': '220',
     'hand': 'right hand',
+    'class': 'middle weight',
     'club': 'Chute Boxe Academy'
   }
   const fighter2 = {
@@ -54,6 +55,7 @@ const Fight = () => {
     'height': '180',
     'weight': '220',
     'hand': 'right hand',
+    'class': 'middle weight',
     'club': 'Chute Boxe Academy'
   }
 
@@ -127,6 +129,7 @@ const Fight = () => {
             height={fighter1.height} 
             weight={fighter1.weight}
             hand={fighter1.hand}
+            class={fighter1.class}
             club={fighter1.club}
           />
           <FighterCard 
@@ -138,6 +141,7 @@ const Fight = () => {
             height={fighter2.height} 
             weight={fighter2.weight}
             hand={fighter2.hand}
+            class={fighter2.class}
             club={fighter2.club}
           />
         </Grid>
