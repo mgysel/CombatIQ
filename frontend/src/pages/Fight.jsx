@@ -31,6 +31,8 @@ import Heatmap from './fight/Heatmap.jsx'
 
 const Fight = () => {
 
+  
+
   // Handle data 
   const fighter1 = {
     'image': 'https://img.bleacherreport.net/img/images/photos/002/098/618/AP11111909790_crop_exact.jpg?w=1200&h=1200&q=75',
@@ -78,11 +80,25 @@ const Fight = () => {
     }
   }
 
+  // Comparison graph commented out
+  //   <Box 
+  //   mt='20px' ml='10vw' mr='10vw' 
+  //   p='20px'
+  //   pt='10px'
+  //   borderWidth='1px' borderRadius='lg' overflow='hidden' 
+  // >
+  //   <Text fontSize='2xl' pb='10px'>Comparison</Text>
+  //   <Summary 
+  //     fighter1={fighter1}
+  //     fighter2={fighter2}
+  //   />
+  // </Box>
+
   return (
     <>
       <HStack pt='20px' pl='11vw'>
-        <ChooseFightMenu />
-        <UploadVideoModal />
+        <ChooseFightMenu button_text={'Choose Fight'} />
+        <UploadVideoModal button_text={'Upload Fight'} />
       </HStack>
       <Center pt='20px' pb='20px'>
         <Iframe
@@ -132,25 +148,13 @@ const Fight = () => {
         pt='10px'
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
       >
-        <Text fontSize='2xl' pb='10px'>Accuracy</Text>
+        <Text fontSize='2xl' pb='10px'>Comparison</Text>
         <Grid templateColumns='repeat(2, 1fr)' gap={200}>
           <AccuracyVis
             fighter1={fighter1}
             fighter2={fighter2}
           />
         </Grid>
-      </Box>
-      <Box 
-        mt='20px' ml='10vw' mr='10vw' 
-        p='20px'
-        pt='10px'
-        borderWidth='1px' borderRadius='lg' overflow='hidden' 
-      >
-        <Text fontSize='2xl' pb='10px'>Comparison</Text>
-        <Summary 
-          fighter1={fighter1}
-          fighter2={fighter2}
-        />
       </Box>
       <Box
         mt='20px' ml='10vw' mr='10vw' mb='40px'
@@ -159,16 +163,18 @@ const Fight = () => {
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
       >
         <Text fontSize='2xl' pb='10px'>Positioning</Text>
-        <Grid templateColumns='repeat(2, 10fr)' gap={100}>
-          <VStack>
-            <Text fontSize='1xl' pr='10px' pb='10px'>{fighter1.name}</Text>
-            <Heatmap />
-          </VStack>
-          <VStack>
-            <Text fontSize='1xl' pr='10px' pb='10px'>{fighter2.name}</Text>
-            <Heatmap />
-          </VStack>
-        </Grid>
+        <Box pl='50px' pr='20px'>
+          <Grid templateColumns='repeat(2, 1fr)' gap={0}>
+            <VStack>
+              <Text fontSize='1xl' pr='10px' pb='10px'>{fighter1.name}</Text>
+              <Heatmap />
+            </VStack>
+            <VStack>
+              <Text fontSize='1xl' pr='10px' pb='10px'>{fighter2.name}</Text>
+              <Heatmap />
+            </VStack>
+          </Grid>
+        </Box>
       </Box>
     </>
   );

@@ -1,0 +1,77 @@
+[
+  {
+    "date": 0,
+    "value": 660,
+    "category": "Overall"
+  },
+  {
+    "date": 0,
+    "value": 680,
+    "category": "Left Hand"
+  },
+  {
+    "date": 0,
+    "value": 640,
+    "category": "Right Hand"
+  },
+  {
+    "date": 10,
+    "value": 700,
+    "category": "Overall"
+  },
+  {
+    "date": 10,
+    "value": 720,
+    "category": "Left Hand"
+  },
+  {
+    "date": 10,
+    "value": 740,
+    "category": "Right Hand"
+  },
+  {
+    "date": 20,
+    "value": 730,
+    "category": "Overall"
+  },  
+  {
+    "date": 20,
+    "value": 690,
+    "category": "Left Hand"
+  },
+  {
+    "date": 20,
+    "value": 740,
+    "category": "Right Hand"
+  },
+  {
+    "date": 30,
+    "value": 740,
+    "category": "Overall"
+  },
+  {
+    "date": 30,
+    "value": 750,
+    "category": "Left Hand"
+  },
+  {
+    "date": 30,
+    "value": 760,
+    "category": "Right Hand"
+  },
+  {
+    "date": 40,
+    "value": 830,
+    "category": "Overall"
+  },
+  {
+    "date": 40,
+    "value": 810,
+    "category": "Left Hand"
+  },
+  {
+    "date": 40,
+    "value": 800,
+    "category": "Right Hand"
+  }
+]

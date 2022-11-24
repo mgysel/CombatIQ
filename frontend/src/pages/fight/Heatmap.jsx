@@ -42,22 +42,21 @@ const Heatmap = (props) => {
           <div title={`Pos(${x}, ${y}) = ${value}`}>{value}</div>
         )}
         xLabelsStyle={(index) => ({
-          color: index % 2 ? 'transparent' : '#777',
+          color: index % 2 ? 'transparent' : '#2C7A7B',
           fontSize: '0rem'
         })}
         yLabelsStyle={() => ({
           fontSize: '0rem',
           textTransform: 'uppercase',
-          color: '#777'
+          color: '#2C7A7B'
         })}
         cellStyle={(_x, _y, ratio) => ({
-          background: `rgb(12, 160, 44, ${ratio})`,
+          background: `rgb(0, 0, 0, ${ratio})`,
           fontSize: '0rem',
           color: `rgb(0, 0, 0, ${ratio / 2 + 0.4})`
         })}
         cellHeight='40px'
         xLabelsPos='bottom'
-        onClick={(x, y) => alert(`Clicked (${x}, ${y})`)}
         yLabelsPos='right'
         square
       />

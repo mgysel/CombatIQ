@@ -30,9 +30,8 @@ const MultiLine = (props) => {
     yField: 'value',
     seriesField: 'category',
     xAxis: {
-      type: 'time',
       title: {
-        text: 'Date',
+        text: props.xAxisTitle,
       },
     },
     yAxis: {
