@@ -36,21 +36,23 @@ const Fight = () => {
     'image': 'https://img.bleacherreport.net/img/images/photos/002/098/618/AP11111909790_crop_exact.jpg?w=1200&h=1200&q=75',
     'name': 'Wanderlei Silva',
     'ethnicity': 'Brazilian American',
-    'age': 'age (3 July 1976)',
+    'age': '46 (3 July 1976)',
     'sex': 'Male',
     'height': '180',
     'weight': '220',
-    'team': 'Chute Boxe Academy'
+    'hand': 'right hand',
+    'club': 'Chute Boxe Academy'
   }
   const fighter2 = {
     'image': 'https://img.bleacherreport.net/img/images/photos/002/098/618/AP11111909790_crop_exact.jpg?w=1200&h=1200&q=75',
     'name': 'Wanderlei Silva',
     'ethnicity': 'Brazilian American',
-    'age': 'age (3 July 1976)',
+    'age': '46 (3 July 1976)',
     'sex': 'Male',
     'height': '180',
     'weight': '220',
-    'team': 'Chute Boxe Academy'
+    'hand': 'right hand',
+    'club': 'Chute Boxe Academy'
   }
 
   let videoTitle = 'Video Title'
@@ -108,7 +110,8 @@ const Fight = () => {
             age={fighter1.age} 
             height={fighter1.height} 
             weight={fighter1.weight}
-            team={fighter1.team}
+            hand={fighter1.hand}
+            club={fighter1.club}
           />
           <FighterCard 
             src={fighter2.image} 
@@ -118,7 +121,8 @@ const Fight = () => {
             age={fighter2.age} 
             height={fighter2.height} 
             weight={fighter2.weight}
-            team={fighter2.team}
+            hand={fighter2.hand}
+            club={fighter2.club}
           />
         </Grid>
       </Box>
