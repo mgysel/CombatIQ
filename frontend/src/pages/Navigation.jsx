@@ -12,7 +12,7 @@ const Navigation = () => {
       <Route exact path="/">
         <Profile />
       </Route>
-      <Route exact path="/fight">
+      <Route exact path="/fights">
         <Fight />
       </Route>
       <Route exact path="/training">

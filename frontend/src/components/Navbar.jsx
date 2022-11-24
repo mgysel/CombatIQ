@@ -1,65 +1,105 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
 import {
+  Box,
   Flex,
-  Heading,
+  Text,
   IconButton,
+  Button,
+  Stack,
+  Collapse,
+  Icon,
   Image,
-  Menu,
-  MenuList,
-  MenuItem,
-  MenuButton,
-} from "@chakra-ui/react";
+  Link,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  useColorModeValue,
+  useBreakpointValue,
+  useDisclosure,
+} from '@chakra-ui/react';
+import {
+  HamburgerIcon,
+  CloseIcon,
+  ChevronDownIcon,
+  ChevronRightIcon,
+} from '@chakra-ui/icons';
 import { Link as RouterLink } from "react-router-dom";
-import { FaUser } from "react-icons/fa";
 
-const Navbar = () => {
-
-  let navPadding = "10px"
+export default function WithSubnavigation() {
+  const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <Flex width="100%" h="3.5rem" bg="gray.700" color="white">
+    <Box>
       <Flex
-        w="100%"
-        maxW="1366px"
-        h="100%"
-        alignItems="center"
-        px="1rem"
-      >
-        <Heading
-          as={RouterLink}
-          to={"/"}
-          minW="max-content"
-          padding={navPadding}
-        >
+        bg={useColorModeValue('gray.800', 'gray.800')}
+        color={useColorModeValue('gray.200', 'white')}
+        minH={'60px'}
+        py={{ base: 2 }}
+        px={{ base: 4 }}
+        borderBottom={1}
+        borderStyle={'solid'}
+        borderColor={useColorModeValue('gray.200', 'gray.900')}
+        align={'center'}>
+        <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }} as={RouterLink} to={"/"} >
           <Image src='images/combatiq_logo.svg' />
-        </Heading>
-        <Heading
-          as={RouterLink}
-          to={"/fight"}
-          minW="max-content"
-          padding={navPadding}
-        >
-          Fight
-        </Heading>
-        <Heading
-          as={RouterLink}
-          to={"/training"}
-          minW="max-content"
-          padding={navPadding}
-        >
-          Training
-        </Heading>
-        <Heading
-          as={RouterLink}
-          to={"/trends"}
-          minW="max-content"
-          padding={navPadding}
-        >
-          Trends
-        </Heading>
+          <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
+            <DesktopNav />
+          </Flex>
+        </Flex>
       </Flex>
-    </Flex>
+    </Box>
+  );
+}
+
+const DesktopNav = () => {
+  const linkColor = useColorModeValue('gray.100', 'gray.200');
+  const linkHoverColor = useColorModeValue('gray.400', 'white');
+  const popoverContentBgColor = useColorModeValue('white', 'gray.800');
+
+  return (
+    <Stack direction={'row'} spacing={4}>
+      {NAV_ITEMS.map((navItem) => (
+        <Box key={navItem.label} pt='10px'>
+          <Popover trigger={'hover'} placement={'bottom-start'}>
+            <PopoverTrigger>
+              <Link
+                p={2}
+                as={RouterLink}
+                to={navItem.href}
+                fontSize={'md'}
+                fontWeight={500}
+                color={linkColor}
+                _hover={{
+                  textDecoration: 'none',
+                  color: linkHoverColor,
+                }}>
+                {navItem.label}
+              </Link>
+            </PopoverTrigger>
+          </Popover>
+        </Box>
+      ))}
+    </Stack>
   );
 };
 
-export default Navbar;
+interface NavItem {
+  label: string;
+  subLabel?: string;
+  children?: Array<NavItem>;
+  href?: string;
+}
+
+const NAV_ITEMS: Array<NavItem> = [
+  {
+    label: 'Fights',
+    href: '/fights'
+  },
+  {
+    label: 'Training',
+    href: '/training',
+  },
+  {
+    label: 'Trends',
+    href: '/trends',
+  },
+];
