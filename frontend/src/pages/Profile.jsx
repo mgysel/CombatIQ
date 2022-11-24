@@ -5,7 +5,7 @@ import {
 } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import { Image, Button } from '@chakra-ui/react'
-import { Stack, HStack, VStack, Right } from "@chakra-ui/react";
+import { Grid, Stack, HStack, VStack, Right } from "@chakra-ui/react";
 import { Text, Flex, Center } from '@chakra-ui/react'
 import { Progress } from '@chakra-ui/react'
 import { Box } from "@chakra-ui/react";
@@ -115,24 +115,12 @@ const Profile = () => {
       else {return 'yellow.500'}
     };
 
+    // Styling
+    let boxSize = '230px'
+
 
   return (
     <>
-      <HStack pt='20px' pl='77vw'>
-        <Menu mt = '10px' >
-          <MenuButton as={Button} rightIcon='▾'>
-            Privacy Setting
-          </MenuButton>
-          <MenuList>
-            <MenuItem>Nationality</MenuItem>
-            <MenuItem>Gender</MenuItem>
-            <MenuItem>Birthday</MenuItem>
-            <MenuItem>Height & weight</MenuItem>
-            <MenuItem>Club</MenuItem>
-          </MenuList>
-        </Menu>
-      </HStack>
-
       <Box
         mt='20px' ml='10vw' mr='10vw' 
         p='20px'
@@ -142,7 +130,7 @@ const Profile = () => {
         <Text fontSize='2xl' pb='10px'>My Profile</Text>
         <HStack spacing='24px' width='1500px'>
           <Image 
-            boxSize='180px'
+            boxSize='200px'
             src={fighter.image} alt='Dan Abramov' />
           <VStack spacing={1.8} align='left'>
             <Text fontSize='3xl'>{fighter.name}</Text>
@@ -161,7 +149,8 @@ const Profile = () => {
         pt='10px'
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
       >
-        <HStack spacing={200} mt='80px' ml = '10vw' mr='10vw'>
+        <Text fontSize='2xl' pb='10px' pl='20px'>General Stats</Text>
+        <HStack spacing={0} mt='20px'>
           <RadarBar
               data={[
               Math.ceil(((score.speed.jab+score.speed.hook+score.speed.uppercut)/3)), //average score of speed
@@ -173,40 +162,40 @@ const Profile = () => {
             />
 
           <VStack>
-            <HStack spacing={50}>
-              <UnorderedList boxSize='300px'><Heading size='md' align='middle'>SPEED</Heading>
+            <Grid templateColumns='repeat(3, 0fr)' gap={12} pl='40px' pb='35px'>
+              <UnorderedList><Heading size='md' align='middle' pb='10px'>SPEED</Heading>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.speed.jab)}><Text fontSize='xl' color='white'>{score.speed.jab}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jab</Text></Flex></ListItem>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.speed.hook)}><Text fontSize='xl' color='white'>{score.speed.hook}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hook</Text></Flex></ListItem>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.speed.uppercut)}><Text fontSize='xl' color='white'>{score.speed.uppercut}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Uppercut</Text></Flex></ListItem>
               </UnorderedList>
 
-              <UnorderedList boxSize='300px'><Heading size='md' align='middle'>POWER</Heading>
+              <UnorderedList><Heading size='md' align='middle' pb='10px'>POWER</Heading>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.power.jab)}><Text fontSize='xl' color='white'>{score.power.jab}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jab</Text></Flex></ListItem>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.power.hook)}><Text fontSize='xl' color='white'>{score.power.hook}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hook</Text></Flex></ListItem>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.power.uppercut)}><Text fontSize='xl' color='white'>{score.power.uppercut}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Uppercut</Text></Flex></ListItem>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.power.damage)}><Text fontSize='xl' color='white'>{score.power.damage}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Damage</Text></Flex></ListItem>
               </UnorderedList>
 
-              <UnorderedList boxSize='300px'><Heading size='md' align='middle'>TECHNIQUE</Heading>
+              <UnorderedList width='240px'><Heading size='md' align='middle' pb='8px'>TECHNIQUE</Heading>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.technique.strike_accuracy)}><Text fontSize='xl' color='white'>{score.technique.strike_accuracy}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Strike Accuracy</Text></Flex></ListItem>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.technique.blocking)}><Text fontSize='xl' color='white'>{score.technique.blocking}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Blocking</Text></Flex></ListItem>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.technique.reaction)}><Text fontSize='xl' color='white'>{score.technique.reaction}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reaction</Text></Flex></ListItem>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.technique.control)}><Text fontSize='xl' color='white'>{score.technique.control}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Control</Text></Flex></ListItem>
               </UnorderedList>
-            </HStack>
+            </Grid>
 
-            <HStack spacing={50}>
-              <UnorderedList boxSize='300px'><Heading size='md' align='middle'>STAMINA</Heading>
+            <Grid templateColumns='repeat(2, 0fr)' gap={12} pl='20px' pr='20px' pb='35px'>
+              <UnorderedList width='240px'><Heading size='md' align='middle' pb='10px'>STAMINA</Heading>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.stamina.rhythm)}><Text fontSize='xl' color='white'>{score.stamina.rhythm}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rhythm</Text></Flex></ListItem>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.stamina.resistance)}><Text fontSize='xl' color='white'>{score.stamina.resistance}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Resistance</Text></Flex></ListItem>
               </UnorderedList>
 
-              <UnorderedList boxSize='300px'><Heading size='md' align='middle'>AGGRESSIVENESS</Heading>
+              <UnorderedList width='240px'><Heading size='md' align='middle' pb='10px'>AGGRESSIVENESS</Heading>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.aggressiveness.pressing)}><Text fontSize='xl' color='white'>{score.aggressiveness.pressing}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pressing</Text></Flex></ListItem>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.aggressiveness.attacking)}><Text fontSize='xl' color='white'>{score.aggressiveness.attacking}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Attacking</Text></Flex></ListItem>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.aggressiveness.counter_attacking)}><Text fontSize='xl' color='white'>{score.aggressiveness.counter_attacking}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Counter Attacking</Text></Flex></ListItem>
               </UnorderedList>
-            </HStack>
+            </Grid>
           </VStack>
         </HStack>
       </Box>
@@ -261,7 +250,7 @@ const Profile = () => {
       </Box>
 
       <Box
-        mt='20px' ml='10vw' mr='10vw' 
+        mt='20px' ml='10vw' mr='10vw' mb='40px'
         p='20px'
         pt='10px'
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
@@ -275,7 +264,7 @@ const Profile = () => {
           </StatGroup>
 
           <HStack pt='20px' pl='58vw'>
-            <Menu mt = '10px' >
+            <Menu mt='10px' >
               <MenuButton as={Button} rightIcon='▾'>
                 Choose Training Video
               </MenuButton>

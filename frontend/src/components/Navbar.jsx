@@ -11,6 +11,8 @@ import {
   Link,
   Menu,
   MenuButton,
+  MenuItem,
+  MenuList,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -54,6 +56,13 @@ export default function WithSubnavigation() {
             <MenuButton as={IconButton} color="gray.700" icon={<FaUser />} ml='70vw'>
               User
             </MenuButton>
+            <MenuList color='black'>
+              <MenuItem>Nationality</MenuItem>
+              <MenuItem>Gender</MenuItem>
+              <MenuItem>Birthday</MenuItem>
+              <MenuItem>Height & weight</MenuItem>
+              <MenuItem>Club</MenuItem>
+            </MenuList>
           </Menu>
         </Flex>
       </Flex>

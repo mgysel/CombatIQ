@@ -16,7 +16,7 @@ const FighterCard = (props) => {
     <VStack>
       <Stack direction='row'>
         <Image 
-          boxSize='160px'
+          boxSize='200px'
           src={props.src} 
           alt='Dan Abramov' 
         />
