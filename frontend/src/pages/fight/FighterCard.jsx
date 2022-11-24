@@ -16,16 +16,18 @@ const FighterCard = (props) => {
     <VStack>
       <Stack direction='row'>
         <Image 
-          boxSize='150px'
+          boxSize='160px'
           src={props.src} 
           alt='Dan Abramov' 
         />
         <Stack spacing={1} pl='6px'>
           <Text fontSize='2xl'>{props.name}</Text>
           <Text fontSize='l'>{props.ethnicity}, {props.sex}</Text>
-          <Text fontSize='l'>{props.age}</Text>
+          <Text fontSize='l'>Age: {props.age}</Text>
           <Text fontSize='l'>{props.height} cm, {props.weight} lb (%muscle, %fat, %water)</Text>
-          <Text fontSize='l'>Team: {props.team}</Text>
+          <Text fontSize='l'>Hand: {props.hand}</Text>
+          <Text fontSize='l'>Class: {props.class}</Text>
+          <Text fontSize='l'>Club: {props.club}</Text>
         </Stack>
       </Stack>
   </VStack>
