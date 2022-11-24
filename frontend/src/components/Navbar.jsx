@@ -9,6 +9,8 @@ import {
   Icon,
   Image,
   Link,
+  Menu,
+  MenuButton,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -23,6 +25,7 @@ import {
   ChevronRightIcon,
 } from '@chakra-ui/icons';
 import { Link as RouterLink } from "react-router-dom";
+import { FaUser, FaShoppingCart } from "react-icons/fa";
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
@@ -39,11 +42,18 @@ export default function WithSubnavigation() {
         borderStyle={'solid'}
         borderColor={useColorModeValue('gray.200', 'gray.900')}
         align={'center'}>
-        <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }} as={RouterLink} to={"/"} >
-          <Image src='images/combatiq_logo.svg' />
+        <Flex flex={{ base: 1 }} >
+          <Flex as={RouterLink} to={"/"}>
+            <Image src='images/combatiq_logo.svg' />
+          </Flex>
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             <DesktopNav />
           </Flex>
+          <Menu alignContent='right'>
+            <MenuButton as={IconButton} color="gray.700" icon={<FaUser />} ml='70vw'>
+              User
+            </MenuButton>
+          </Menu>
         </Flex>
       </Flex>
     </Box>
