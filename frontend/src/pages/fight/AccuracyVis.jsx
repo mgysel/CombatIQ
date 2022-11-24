@@ -13,6 +13,21 @@ import RadioCard from "../../components/radio/RadioCard";
 
 const AccuracyVis = (props) => {
 
+    let fighter1_accuracy = {
+      'head': [22, 27],
+      'body': [12, 18],
+      'overall': [26, 45]
+    }
+
+    let fighter2_accuracy = {
+      'head': [10, 21],
+      'body': [9, 18],
+      'overall': [19, 39]
+    }
+
+    let fighter1_overall_accuracy = (fighter1_accuracy.overall[0] / fighter1_accuracy.overall[1])
+    let fighter2_overall_accuracy = (fighter2_accuracy.overall[0] / fighter2_accuracy.overall[1])
+
     // For radio
     const [tabIndex, setTabIndex] = useState(0)
 
@@ -30,16 +45,16 @@ const AccuracyVis = (props) => {
         <VStack pr='10vw'>
           <HStack pb='30px'>
             <Text fontSize='1xl' pr='10px'>{props.fighter1.name}</Text>
-            <RingProgress />
+            <RingProgress data={fighter1_overall_accuracy}/>
           </HStack>
-          <HumanBody />
+          <HumanBody data={fighter1_accuracy}/>
         </VStack>
         <VStack pl='10vw'>
           <HStack pb='30px'>
             <Text fontSize='1xl' pr='10px'>{props.fighter2.name}</Text>
-            <RingProgress />
+            <RingProgress data={fighter2_overall_accuracy}/>
           </HStack>
-          <HumanBody />
+          <HumanBody data={fighter2_accuracy}/>
         </VStack>
       </Grid>
       <Center>

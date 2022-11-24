@@ -20,15 +20,8 @@ import HumanBodyTag from "./HumanBodyTag";
 import {getColor} from '../../helpers/accuracyColor'
 
 const HumanBody = (props) => {
-  
-  let data = {
-    'head': [4, 7],
-    'body': [2, 8],
-    'leftUpperLeg': [1, 3],
-    'rightUpperLeg': [1, 2],
-    'leftLowerLeg': [0, 2],
-    'rightLowerLeg': [4, 4],
-  }
+
+  let [data, setData] = React.useState(props.data)
 
   let colors = {
     'gray': '#A0AEC0',
@@ -85,16 +78,9 @@ const HumanBody = (props) => {
       <svg fill={getColor(data.body)} data-position='left-hand' id='left-hand' class='left-hand' xmlns='http://www.w3.org/2000/svg' width='90' height='38.938' viewBox='0 0 90 38.938'><path d='m 21.255,-0.00198191 2.88,6.90000201 8.412,1.335 0.664,12.4579799 -4.427,17.8 -2.878,-0.22 2.8,-11.847 -2.99,-0.084 -4.676,12.6 -3.544,-0.446 4.4,-12.736 -3.072,-0.584 -5.978,13.543 -4.428,-0.445 6.088,-14.1 -2.1,-1.25 L 4.878,34.934 1.114,34.489 12.4,12.9 11.293,11.12 0.665,15.57 0,13.124 8.635,5.3380201 Z' /></svg>
       <svg fill={getColor(data.body)} data-position='right-hand' id='right-hand' class='right-hand' xmlns='http://www.w3.org/2000/svg' width='90' height='38.938' viewBox='0 0 90 38.938'><path d='m 13.793386,-0.00198533 -2.88,6.90000163 -8.4120002,1.335 -0.664,12.4579837 4.427,17.8 2.878,-0.22 -2.8,-11.847 2.99,-0.084 4.6760002,12.6 3.544,-0.446 -4.4,-12.736 3.072,-0.584 5.978,13.543 4.428,-0.445 -6.088,-14.1 2.1,-1.25 7.528,12.012 3.764,-0.445 -11.286,-21.589 1.107,-1.78 10.628,4.45 0.665,-2.447 -8.635,-7.7859837 z'/></svg>
     </div>
-    <div class='group-hover'>
-      <HumanBodyTag 
-          title='Right Upper Leg'
-          hits={data.rightUpperLeg[0]} attempts={data.rightUpperLeg[1]} 
-          marginTop='10px'
-          marginLeft='-118px'
-          width='146px'
-      />
+    <div>
       <svg 
-      fill={getColor(data.rightUpperLeg)}
+      fill={colors.gray}
       data-position='left-upper-leg' id='left-upper-leg' class='left-upper-leg' 
       xmlns='http://www.w3.org/2000/svg' 
       width='93.626' height='131.625' 
@@ -127,16 +113,9 @@ const HumanBody = (props) => {
           '/>
       </svg>
     </div>
-    <div class='group-hover'>
-      <HumanBodyTag 
-          title='Right Lower Leg'
-          hits={data.rightLowerLeg[0]} attempts={data.rightLowerLeg[1]} 
-          marginTop='125px'
-          marginLeft='-118px'
-          width='146px'
-      />
+    <div>
       <svg
-        fill={getColor(data.rightLowerLeg)}
+        fill={colors.gray}
         data-position='left-lower-leg' id='left-lower-leg' class='left-lower-leg' 
         xmlns='http://www.w3.org/2000/svg' 
         width='93.626' height='150.625' 
@@ -158,16 +137,9 @@ const HumanBody = (props) => {
             '/>
       </svg>
     </div>
-    <div class='group-hover'>
-      <HumanBodyTag 
-          title='Left Upper Leg'
-          hits={data.leftUpperLeg[0]} attempts={data.leftUpperLeg[1]} 
-          marginTop='10px'
-          marginLeft='180px'
-          width='133px'
-      />
+    <div>
       <svg 
-        fill={getColor(data.leftUpperLeg)}
+        fill={colors.gray}
         data-position='right-upper-leg' id='right-upper-leg' class='right-upper-leg' 
         xmlns='http://www.w3.org/2000/svg' 
         width='80' height='131.625' 
@@ -196,16 +168,9 @@ const HumanBody = (props) => {
         />
       </svg>
     </div>
-    <div class='group-hover'>
-      <HumanBodyTag 
-          title='Left Lower Leg'
-          hits={data.leftLowerLeg[0]} attempts={data.leftLowerLeg[1]} 
-          marginTop='125px'
-          marginLeft='180px'
-          width='134px'
-      />
+    <div>
       <svg 
-        fill={getColor(data.leftLowerLeg)}
+        fill={colors.gray}
         data-position='right-lower-leg' id='right-lower-leg' class='right-lower-leg' 
         xmlns='http://www.w3.org/2000/svg' 
         width='93.626' height='150.625' 
@@ -241,12 +206,6 @@ const HumanBody = (props) => {
       />
       </svg>
     </div>
-
-
-
-
-
-
   </div>
   );
 };

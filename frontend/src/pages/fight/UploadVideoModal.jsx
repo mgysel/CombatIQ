@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react";
 import VideoInput from '../../components/video/VideoInput.jsx'
 
-const UploadVideoModal = () => {
+const UploadVideoModal = (props) => {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
@@ -32,7 +32,7 @@ const UploadVideoModal = () => {
 
   return (
     <>
-      <Button onClick={onOpen}>Upload New Fight</Button>
+      <Button onClick={onOpen}>{props.button_text}</Button>
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}

@@ -81,8 +81,8 @@ const Fight = () => {
   return (
     <>
       <HStack pt='20px' pl='11vw'>
-        <ChooseFightMenu />
-        <UploadVideoModal />
+        <ChooseFightMenu button_text={'Choose Fight'} />
+        <UploadVideoModal button_text={'Upload Fight'} />
       </HStack>
       <Center pt='20px' pb='20px'>
         <Iframe
@@ -157,16 +157,18 @@ const Fight = () => {
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
       >
         <Text fontSize='2xl' pb='10px'>Positioning</Text>
-        <Grid templateColumns='repeat(2, 10fr)' gap={100}>
-          <VStack>
-            <Text fontSize='1xl' pr='10px' pb='10px'>{fighter1.name}</Text>
-            <Heatmap />
-          </VStack>
-          <VStack>
-            <Text fontSize='1xl' pr='10px' pb='10px'>{fighter2.name}</Text>
-            <Heatmap />
-          </VStack>
-        </Grid>
+        <Box pl='50px' pr='20px'>
+          <Grid templateColumns='repeat(2, 1fr)' gap={0}>
+            <VStack>
+              <Text fontSize='1xl' pr='10px' pb='10px'>{fighter1.name}</Text>
+              <Heatmap />
+            </VStack>
+            <VStack>
+              <Text fontSize='1xl' pr='10px' pb='10px'>{fighter2.name}</Text>
+              <Heatmap />
+            </VStack>
+          </Grid>
+        </Box>
       </Box>
     </>
   );

@@ -13,11 +13,7 @@ import { CheckCircleIcon, WarningTwoIcon } from '@chakra-ui/icons'
 import {
   Box,
   Center,
-  Flex,
   HStack,
-  Radio,
-  RadioGroup,
-  Stack,
   Stat,
   StatLabel,
   StatNumber,
@@ -27,8 +23,7 @@ import {
 import Iframe from 'react-iframe-click';
 import UploadVideoModal from './fight/UploadVideoModal.jsx';
 import ChooseFightMenu from './fight/ChooseFightMenu.jsx';
-import Trends from './training/Stamina.jsx';
-import AnalysisData from '../dummy_data/training/analysis.json'
+import Stamina from './training/Stamina.jsx';
 import Analysis from './training/Analysis.jsx';
 
 const Training = () => {
@@ -70,8 +65,8 @@ const Training = () => {
   return (
     <>
       <HStack pt='20px' pl='11vw'>
-        <ChooseFightMenu />
-        <UploadVideoModal />
+        <ChooseFightMenu button_text={'Choose Training Session'} />
+        <UploadVideoModal button_text={'Upload Training Session'} />
       </HStack>
       <Center pt='20px' pb='20px'>
         <Iframe
@@ -142,7 +137,7 @@ const Training = () => {
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
       >
         <Text fontSize='2xl' pb='10px'>Stamina</Text>
-        <Trends />
+        <Stamina />
       </Box>
     </>
   );

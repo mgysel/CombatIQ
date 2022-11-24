@@ -8,12 +8,12 @@ import {
 import VideoInput from '../../components/video/VideoInput.jsx'
 import { ChevronDownIcon } from '@chakra-ui/icons'
 
-const ChooseFightMenu = () => {
+const ChooseFightMenu = (props) => {
 
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-        Choose Fight
+        {props.button_text}
       </MenuButton>
       <MenuList>
         <MenuItem>Fight 1</MenuItem>
