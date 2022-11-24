@@ -35,7 +35,7 @@ const TrainingStatTable = (props) => {
       </Thead>
       <Tbody>
         <Tr backgroundColor={backgroundColor} border='5px solid white'>
-          <Td>Both Hands</Td>
+          <Td>Overall</Td>
           <Td>Average</Td>
           <Td isNumeric>{data.speed.both_hands.average}</Td>
           <Td isNumeric>{data.power.both_hands.average}</Td>
