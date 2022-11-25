@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import { Flex, Heading, Button } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
+import LoginForm from "../components/auth/LoginForm.jsx";
+import SignupForm from "../components/auth/SignupForm.jsx";
 
 const Landing = () => {
   const [display, setDisplay] = React.useState(0)
@@ -19,6 +21,7 @@ const Landing = () => {
       </Heading>
       <Flex justifyContent="space-between" w="100%" maxW="28rem" mt="3rem">
         {display===0 &&
+        <>
           <Button
             w="10rem"
             h="4rem"
@@ -41,8 +44,21 @@ const Landing = () => {
               setDisplay(2);
             }}
           >
-            Register
+            Signup
           </Button>
+        </>
+        }
+        {
+          display===1 &&
+          <>
+            <LoginForm />
+          </>
+        }
+        {
+          display===2 &&
+          <>
+            <SignupForm />
+          </>
         }
       </Flex>
     </Flex>

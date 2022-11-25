@@ -14,8 +14,8 @@ import {
   AlertIcon,
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
-import API from "../helpers/api";
-import { StoreContext } from "../helpers/context";
+import API from "../../helpers/api";
+import { StoreContext } from "../../helpers/context";
 
 const LoginForm = () => {
   const [show, setShow] = React.useState(false);

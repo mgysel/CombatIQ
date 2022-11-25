@@ -14,8 +14,8 @@ import {
   CloseButton,
   AlertIcon,
 } from "@chakra-ui/react";
-import API from "../helpers/api";
-import { StoreContext } from "../helpers/context";
+import API from "../../helpers/api";
+import { StoreContext } from "../../helpers/context";
 
 const SignupForm = () => {
   const [show, setShow] = React.useState(false);
