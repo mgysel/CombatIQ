@@ -97,7 +97,7 @@ const Fight = () => {
   // </Box>
 
   return (
-    <>
+    <Box backgroundColor='#edeef0'>
       <HStack pt='20px' pl='11vw'>
         <ChooseFightMenu button_text={'Choose Fight'} />
         <UploadVideoModal button_text={'Upload Fight'} />
@@ -117,6 +117,7 @@ const Fight = () => {
         p='20px'
         pt='10px'
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
+        backgroundColor='white'
       >
         <Text fontSize='2xl' pb='10px'>Bio</Text>
         <Grid templateColumns='repeat(2, 1fr)' gap={6}>
@@ -151,6 +152,7 @@ const Fight = () => {
         p='20px'
         pt='10px'
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
+        backgroundColor='white'
       >
         <Text fontSize='2xl' pb='10px'>Comparison</Text>
         <Grid templateColumns='repeat(2, 1fr)' gap={200}>
@@ -165,9 +167,10 @@ const Fight = () => {
         p='20px'
         pt='10px'
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
+        backgroundColor='white'
       >
         <Text fontSize='2xl' pb='10px'>Positioning</Text>
-        <Box pl='50px' pr='20px'>
+        <Box pl='50px' pr='20px' backgroundColor='white'>
           <Grid templateColumns='repeat(2, 1fr)' gap={0}>
             <VStack>
               <Text fontSize='1xl' pr='10px' pb='10px'>{fighter1.name}</Text>
@@ -180,7 +183,7 @@ const Fight = () => {
           </Grid>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 };
 
