@@ -82,6 +82,8 @@ def register_user():
     Registers a user
     '''
     data = request.get_json()
+    print("AUTH REGISTER DATA")
+    print(data)
     result = auth_register(data, APP.secret_key)
     return result
 
@@ -159,6 +161,26 @@ def get_fighters():
 #         return {"message": "Could not find product."}, 404
 #     except:
 #         return {"message": "Could not find product."}, 404
+
+
+########## COMBAT IQ ROUTES ##########
+@APP.route('/combatiq/', methods=['POST'])
+@cross_origin()
+def get_data():
+    '''
+    Requests data from a video
+    '''
+    # Get video
+    data = request.get_json()
+
+    # Send to CombatIQ
+    result = auth_login(data, APP.secret_key)
+
+    
+    return result
+
+
+
 
 if __name__ == "__main__":
     APP.run(port=(int(sys.argv[1]) if len(sys.argv) == 2 else 2119), debug=True)

@@ -43,11 +43,14 @@ class Fighter:
         return fighters
 
     @staticmethod
-    def insert_one(user):
+    def insert_one(fighter):
         '''
         Inserts a user object into the database
         '''
-        json_obj = user.to_json()
+        print("INSIDE insert_one")
+        print(fighter)
+        json_obj = fighter.to_json()
+        print(json_obj)
         if json_obj != None:
             db = MongoWrapper().client['CombatIQ']
             coll = db['Fighters']
@@ -63,12 +66,17 @@ class Fighter:
         Finds a user by a specific attribute
         Returns user object
         '''
+        print("INSIDE find_fighter_by_attribute")
         db = MongoWrapper().client['CombatIQ']
         coll = db['Fighters']
         fighter_json = coll.find_one({ attribute: user_attribute })
+        print("fighters")
+        print(fighter_json)
 
         if fighter_json:
             user = Fighter.from_json(fighter_json)
+            print("user")
+            print(user)
             return user
         return None
 
@@ -113,14 +121,22 @@ class Fighter:
         User json object to User Object
         '''
         if fighter_json != None:
-            properties = ['name', 'age', 'weight']
+            properties = ['email', 'password', 'first_name', 'last_name', 'age', 'weight']
             for prop in properties:
                 if prop not in fighter_json:
                     return None
             _id = None
             if '_id' in fighter_json:
                 _id = fighter_json['_id']
-            return Fighter(_id, fighter_json['name'], fighter_json['age'], fighter_json['weight'])
+            return Fighter(
+                _id, 
+                fighter_json['email'], 
+                fighter_json['password'], 
+                fighter_json['first_name'],
+                fighter_json['last_name'],
+                fighter_json['age'],
+                fighter_json['weight']
+            )
 
     @staticmethod
     def many_to_json(fighters):

@@ -110,7 +110,7 @@ const LoginForm = () => {
           <Alert
             status={alertStatus}
             my="0.5rem"
-            d={alertDisplay}
+            display={alertDisplay}
             color="black"
           >
             <AlertIcon />

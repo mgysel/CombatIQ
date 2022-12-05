@@ -32,6 +32,7 @@ def auth_login(data, secret_key):
     Use of JWT references:
     https://www.geeksforgeeks.org/using-jwt-for-user-authentication-in-flask/
     '''
+    print("INSIDE AUTH LOGIN")
     fields = ['email', 'password']
     for field in fields:
         if not field in data:
@@ -44,6 +45,9 @@ def auth_login(data, secret_key):
 
     email = data['email']
     password = data['password']
+    print("Email, password")
+    print(email)
+    print(password)
 
     if not Fighter.valid_email(email) or not Fighter.valid_password(password): 
         # returns 401 if email/password not valid
@@ -102,6 +106,7 @@ def auth_register(data, secret_key):
     Errors from invalid email, email taken, password < 6 characters,
     first or last name being ouside of 1 to 50 range
     '''
+    print("INSIDE AUTH REGISTER")
     fields = ['email', 'password', 'first_name', 'last_name', 'confirm_password']
     for field in fields:
         if not field in data:
@@ -119,6 +124,7 @@ def auth_register(data, secret_key):
     confirm_password = data['confirm_password']
     # Check - valid email
     if not Fighter.valid_email(email):
+        print("invalid email address")
         return make_response(
             dumps(
                 {"message": "Invalid Email Address."}
@@ -128,6 +134,7 @@ def auth_register(data, secret_key):
 
     # Check - unused email
     if not Fighter.unused_email(email):
+        print("used email address")
         return make_response(
             dumps(
                 {"message": "Email Address already taken."}
@@ -137,6 +144,7 @@ def auth_register(data, secret_key):
 
     # Check - valid password
     if not Fighter.valid_password(password):
+        print("invalid password")
         return make_response(
             dumps(
                 {"message": "Password must be longer than 6 characters."}
@@ -144,6 +152,7 @@ def auth_register(data, secret_key):
             400
         ) 
     if not Fighter.valid_matching_passwords(password, confirm_password):
+        print("passwords dont match")
         return make_response(
             dumps(
                 {"message": "Passwords must match."}
@@ -172,6 +181,7 @@ def auth_register(data, secret_key):
     age = -1
     weight = -1
 
+    print("Inserting fighter")
     fighter = Fighter(None, email, generate_password_hash(password), first_name, last_name, age, weight)
     Fighter.insert_one(fighter)
 
@@ -180,6 +190,7 @@ def auth_register(data, secret_key):
         'email': email,
         'password': password
     }
+    print("returning auth login")
     return auth_login(data, secret_key)
     
 

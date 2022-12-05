@@ -50,6 +50,8 @@ const SignupForm = () => {
       })
       .catch((err) => {
         err.json().then((json) => {
+          console.log("ERROR")
+          console.log(err)
           setAlertDisplay("flex");
           setAlertStatus("error");
           setAlertMessage(json.message);
@@ -153,7 +155,7 @@ const SignupForm = () => {
             Register
           </Button>
         </form>
-        <Alert status={alertStatus} my="1rem" d={alertDisplay} color="black">
+        <Alert status={alertStatus} my="1rem" display={alertDisplay} color="black">
           <AlertIcon />
           <AlertTitle mr={2}>
             {alertStatus === "error" ? "Error" : "Success"}
