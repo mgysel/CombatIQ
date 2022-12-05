@@ -3,9 +3,9 @@ import { Switch, Route } from "react-router-dom";
 import Profile from "./Profile";
 import Training from "./Training.jsx";
 import Fight from "./Fight.jsx";
-import BrowseVideo from "../components/video/BrowseVideo";
 import Trends from "./Trends.jsx";
 import Landing from "./Landing.jsx";
+import EditProfile from "./EditProfile.jsx";
 import { StoreContext } from "../helpers/context";
 
 const Navigation = () => {
@@ -32,8 +32,8 @@ const Navigation = () => {
       <Route exact path="/trends">
         <Trends />
       </Route>
-      <Route exact path="/auth">
-        <Trends />
+      <Route exact path="/edit-profile">
+        <EditProfile />
       </Route>
     </Switch>
   );

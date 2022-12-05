@@ -12,7 +12,8 @@ from flask.json import jsonify
 from bson.objectid import ObjectId
 
 
-from objects.fighterObject import Fighter
+from objects.userObject import User
+from user import get_user_profile, user_profile_update_user
 
 
 APP = Flask(__name__)
@@ -57,7 +58,7 @@ def token_required(f):
             # TODO - Obtain id of user from database
             print("********** DATA **********")
             print(data)
-            current_user = Fighter.find_user_by_attribute("_id", ObjectId(data['id']))
+            current_user = User.find_user_by_attribute("_id", ObjectId(data['id']))
             print("********** CURRENT USER **********")
             print(current_user)
             #find_user_by_attribute(cls, attribute, user_attribute)
@@ -82,8 +83,6 @@ def register_user():
     Registers a user
     '''
     data = request.get_json()
-    print("AUTH REGISTER DATA")
-    print(data)
     result = auth_register(data, APP.secret_key)
     return result
 
@@ -118,19 +117,18 @@ def get_fighters():
     '''
     Returns list of figher objects
     '''
-    fighters = Fighter.get_all_fighters()
-    print("INSIDE SERVER - FIGHTERS")
-    print(fighters)
+    users = User.get_all_users()
+    print("INSIDE SERVER - USERS")
+    print(users)
 
-    if fighters:
-        fighters_json = Fighter.many_to_json_str(fighters)
-        print("FIGHTERS JSON: ")
-        print(fighters_json)
+    if users:
+        users_json = User.many_to_json_str(users)
+        print(users_json)
         return make_response(
             dumps(
                 {
                     "message": "Success.",
-                    "data": {"fighters": fighters_json}
+                    "data": {"users": users_json}
                 }
             ), 
             201
@@ -139,7 +137,7 @@ def get_fighters():
     return make_response(
         dumps(
             {
-                "message": "Fighters do not exist in the database.",
+                "message": "Users do not exist in the database.",
                 "data": {}
             }
         ), 
@@ -149,35 +147,30 @@ def get_fighters():
     # response = get_user_profile(current_user._id)
     # return response
 
-# def get_product(product_id):
-#     '''
-#     Retrieves a single product per an id.
-#     '''
-#     try:
-#         obj_id = ObjectId(product_id)
-#         product = Product.get_product({"_id": { "$eq": ObjectId(product_id)}})
-#         if product:
-#             return {"data": product.to_json_str(), "message": "Success."}, 200
-#         return {"message": "Could not find product."}, 404
-#     except:
-#         return {"message": "Could not find product."}, 404
 
 
-########## COMBAT IQ ROUTES ##########
-@APP.route('/combatiq/', methods=['POST'])
-@cross_origin()
-def get_data():
+########## USER ROUTES ##########
+@APP.route('/user/profile', methods=['GET'])
+@token_required
+def user_profile(current_user):
     '''
-    Requests data from a video
+    Inputs a user object
+    Returns user object if valid JWT
     '''
-    # Get video
+    response = get_user_profile(current_user._id)
+    return response
+
+
+@APP.route('/user/profile/editUser', methods=['PUT'])
+@token_required
+def user_profile_edit_user(current_user):
+    '''
+    Takes in a user object
+    Edits user object
+    '''
     data = request.get_json()
-
-    # Send to CombatIQ
-    result = auth_login(data, APP.secret_key)
-
-    
-    return result
+    response = user_profile_update_user(current_user._id, data)
+    return response
 
 
 

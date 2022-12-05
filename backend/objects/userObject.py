@@ -15,11 +15,11 @@ from objects.MongoWrapper import MongoWrapper
 from bson import ObjectId
 import re
 
-class Fighter:
+class User:
     '''
     User class that contains basic user info/methods
     '''
-    def __init__(self, _id, email, password, first_name, last_name, gender, age, height, weight, hand, weight_class, club):
+    def __init__(self, _id, email, password, first_name, last_name, gender, age, height, weight, hand, weight_class, club, image):
         self._id = _id
         self.email = email
         self.password = password
@@ -32,29 +32,28 @@ class Fighter:
         self.hand = hand 
         self.weight_class = weight_class
         self.club = club
+        self.image = image
 
-    def get_all_fighters():
+    def get_all_users():
         '''
         Returns list of User objects from the database
         '''
         db = MongoWrapper().client['CombatIQ']
         coll = db['Fighters']
-        fighters = []
-        for fighter_json in coll.find():
-            print("FIGHTER JSON")
-            print(fighter_json)
-            fighter = Fighter.from_json(fighter_json)
-            fighters.append(fighter)
-        return fighters
+        users = []
+        for user_json in coll.find():
+            user = User.from_json(user_json)
+            users.append(user)
+        return users
 
     @staticmethod
-    def insert_one(fighter):
+    def insert_one(user):
         '''
         Inserts a user object into the database
         '''
         print("INSIDE insert_one")
-        print(fighter)
-        json_obj = fighter.to_json()
+        print(user)
+        json_obj = user.to_json()
         print(json_obj)
         if json_obj != None:
             db = MongoWrapper().client['CombatIQ']
@@ -66,27 +65,24 @@ class Fighter:
                 return None
 
     @classmethod
-    def find_fighter_by_attribute(cls, attribute, user_attribute):
+    def find_user_by_attribute(cls, attribute, user_attribute):
         '''
         Finds a user by a specific attribute
         Returns user object
         '''
-        print("INSIDE find_fighter_by_attribute")
         db = MongoWrapper().client['CombatIQ']
         coll = db['Fighters']
-        fighter_json = coll.find_one({ attribute: user_attribute })
-        print("fighters")
-        print(fighter_json)
+        user_json = coll.find_one({ attribute: user_attribute })
 
-        if fighter_json:
-            user = Fighter.from_json(fighter_json)
+        if user_json:
+            user = User.from_json(user_json)
             print("user")
             print(user)
             return user
         return None
 
     @classmethod
-    def find_fighters_from_search(cls, query, page):
+    def find_users_from_search(cls, query, page):
         """
         Returns users with matching name
         """
@@ -106,7 +102,7 @@ class Fighter:
         coll = db['Fighters']
         results = coll.find(filter=filter,skip=skip,limit=limit).collation({'locale':'en'}).sort([('first_name',1),('last_name',1)])
 
-        return [Fighter.from_json(x) for x in results]
+        return [User.from_json(x) for x in results]
 
     # def to_json(self):
     #     '''
@@ -121,11 +117,11 @@ class Fighter:
     #     return obj
 
     @staticmethod
-    def from_json(fighter_json):
+    def from_json(user_json):
         '''
         User json object to User Object
         '''
-        if fighter_json != None:
+        if user_json != None:
             properties = [
                 'email', 
                 'password', 
@@ -137,47 +133,49 @@ class Fighter:
                 'weight',
                 'hand',
                 'weight_class',
-                'club'
+                'club',
+                'image'
             ]
             for prop in properties:
-                if prop not in fighter_json:
+                if prop not in user_json:
                     return None
             _id = None
-            if '_id' in fighter_json:
-                _id = fighter_json['_id']
-            return Fighter(
+            if '_id' in user_json:
+                _id = user_json['_id']
+            return User(
                 _id, 
-                fighter_json['email'], 
-                fighter_json['password'], 
-                fighter_json['first_name'],
-                fighter_json['last_name'],
-                fighter_json['gender'],
-                fighter_json['age'],
-                fighter_json['height'],
-                fighter_json['weight'],
-                fighter_json['hand'],
-                fighter_json['weight_class'],
-                fighter_json['club'],
+                user_json['email'], 
+                user_json['password'], 
+                user_json['first_name'],
+                user_json['last_name'],
+                user_json['gender'],
+                user_json['age'],
+                user_json['height'],
+                user_json['weight'],
+                user_json['hand'],
+                user_json['weight_class'],
+                user_json['club'],
+                user_json['image']
             )
 
     @staticmethod
-    def many_to_json(fighters):
+    def many_to_json(users):
         '''
-        Converts a list of fighters to a list of python inbuilt objects.
+        Converts a list of users to a list of python inbuilt objects.
         '''
         l = []
-        for fighter in fighters:
-            l.append(fighter.to_json())
+        for user in users:
+            l.append(user.to_json())
         return l
 
     @staticmethod
-    def many_to_json_str(fighters):
+    def many_to_json_str(users):
         '''
-        Converts a list of Fighters to a list of strings.
+        Converts a list of Users to a list of strings.
         '''
         l = []
-        for fighter in fighters:
-            l.append(fighter.to_json_str())
+        for user in users:
+            l.append(user.to_json_str())
         return l   
 
     def to_json(self):
@@ -191,7 +189,7 @@ class Fighter:
 
     def to_json_str(self):
         '''
-        Converts one Fighter to a string.
+        Converts one User to a string.
         '''
         obj = self.__dict__
         if obj['_id'] == None:

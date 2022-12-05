@@ -7,7 +7,7 @@ import jwt
 from datetime import datetime, timedelta 
 from functools import wraps
 
-from objects.fighterObject import Fighter
+from objects.userObject import User
 
 # TODO - How get the APP secret key from server.py?
 
@@ -20,7 +20,7 @@ import re
 import uuid
 from email.message import Message
 from flask.templating import render_template
-from objects.fighterObject import Fighter
+from objects.userObject import User
 
 
 ########## MAIN FUNCTIONS ##########
@@ -49,7 +49,7 @@ def auth_login(data, secret_key):
     print(email)
     print(password)
 
-    if not Fighter.valid_email(email) or not Fighter.valid_password(password): 
+    if not User.valid_email(email) or not User.valid_password(password): 
         # returns 401 if email/password not valid
         return make_response(
             dumps(
@@ -60,7 +60,7 @@ def auth_login(data, secret_key):
         
    
     # Obtain user from database
-    user = Fighter.find_fighter_by_attribute("email", email)
+    user = User.find_user_by_attribute("email", email)
    
     if not user: 
         # returns 401 if user does not exist 
@@ -123,7 +123,7 @@ def auth_register(data, secret_key):
     last_name = data['last_name']
     confirm_password = data['confirm_password']
     # Check - valid email
-    if not Fighter.valid_email(email):
+    if not User.valid_email(email):
         print("invalid email address")
         return make_response(
             dumps(
@@ -133,7 +133,7 @@ def auth_register(data, secret_key):
         ) 
 
     # Check - unused email
-    if not Fighter.unused_email(email):
+    if not User.unused_email(email):
         print("used email address")
         return make_response(
             dumps(
@@ -143,7 +143,7 @@ def auth_register(data, secret_key):
         ) 
 
     # Check - valid password
-    if not Fighter.valid_password(password):
+    if not User.valid_password(password):
         print("invalid password")
         return make_response(
             dumps(
@@ -151,7 +151,7 @@ def auth_register(data, secret_key):
             ), 
             400
         ) 
-    if not Fighter.valid_matching_passwords(password, confirm_password):
+    if not User.valid_matching_passwords(password, confirm_password):
         print("passwords dont match")
         return make_response(
             dumps(
@@ -161,7 +161,7 @@ def auth_register(data, secret_key):
         ) 
 
     # Checks first and last name are between 1 and 51 characters
-    if not Fighter.valid_name(first_name):
+    if not User.valid_name(first_name):
         return make_response(
             dumps(
                 {"message": "First name must be between 1 and 50 characters."}
@@ -169,7 +169,7 @@ def auth_register(data, secret_key):
             400
         ) 
 
-    if not Fighter.valid_name(last_name):
+    if not User.valid_name(last_name):
         return make_response(
             dumps(
                 {"message": "Last name must be between 1 and 50 characters."}
@@ -178,17 +178,18 @@ def auth_register(data, secret_key):
         ) 
 
     # Create user object, add to database
-    gender = -1
-    age = -1
-    height = -1
-    weight = -1
-    hand = -1
-    weight_class = -1
-    club = -1
+    gender = ""
+    age = ""
+    height = ""
+    weight = ""
+    hand = ""
+    weight_class = ""
+    club = ""
+    image = ""
 
     print("Inserting fighter")
-    fighter = Fighter(None, email, generate_password_hash(password), first_name, last_name, gender, age, height, weight, hand, weight_class, club)
-    Fighter.insert_one(fighter)
+    user = User(None, email, generate_password_hash(password), first_name, last_name, gender, age, height, weight, hand, weight_class, club, image)
+    User.insert_one(user)
 
     # Log user in once registered
     data = {
@@ -217,11 +218,11 @@ def auth_request(email):
     https://medium.com/@stevenrmonaghan/password-reset-with-flask-mail-protocol-ddcdfc190968
     '''
     # Obtain user from database
-    user = Fighter.find_fighter_by_attribute("email", email)
+    user = User.find_user_by_attribute("email", email)
 
     # Create and store hash of reset_code
     reset_code = str(uuid.uuid4())
-    Fighter.update_fighter_attribute("email", email, "reset_code", generate_password_hash(reset_code))
+    User.update_user_attribute("email", email, "reset_code", generate_password_hash(reset_code))
 
     return reset_code
 
@@ -248,7 +249,7 @@ def auth_reset(data, secret_key):
     password = data['password']
 
     # Check - valid password
-    if not Fighter.valid_password(password):
+    if not User.valid_password(password):
         return make_response(
             dumps(
                 {"message": "Password must be longer than 6 characters."}
@@ -257,7 +258,7 @@ def auth_reset(data, secret_key):
         ) 
     
     # Obtain user from database
-    user = Fighter.find_fighter_by_attribute("email", email)
+    user = User.find_user_by_attribute("email", email)
    
     if not user: 
         # returns 401 if user does not exist 
@@ -271,7 +272,7 @@ def auth_reset(data, secret_key):
     if check_password_hash(user.reset_code, reset_code): 
 
         # Update the password
-        Fighter.update_user_attribute("email", email, "password", generate_password_hash(password))
+        User.update_user_attribute("email", email, "password", generate_password_hash(password))
         # generates the JWT Token 
         token = jwt.encode({ 
             'id': str(user._id),

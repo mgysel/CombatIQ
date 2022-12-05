@@ -38,9 +38,41 @@ import {
   MenuCommand
 } from '@chakra-ui/react'
 import RadarBar from "../components/visualisations/RadarBar";
+import API from "../helpers/api";
 
 
 const Profile = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [gender, setGender] = useState("");
+  const [age, setAge] = useState("");
+  const [height, setHeight] = useState("");
+  const [weight, setWeight] = useState("");
+  const [hand, setHand] = useState("");
+  const [fightClass, setFightClass] = useState("");
+  const [club, setClub] = useState("");
+  const [image, setImage] = useState("");
+
+  useEffect(() => {
+    API.getPath("user/profile")
+      .then((json) => {
+        // setName(json.data.user.first_name);
+        console.log(json.data.user);
+        setFirstName(json.data.user.first_name);
+        setLastName(json.data.user.last_name);
+        setGender(json.data.user.gender);
+        setAge(json.data.user.age);
+        setHeight(json.data.user.height);
+        setWeight(json.data.user.weight);
+        setHand(json.data.user.hand);
+        setFightClass(json.data.user.class);
+        setClub(json.data.user.club);
+        setImage(json.data.user.image);
+      })
+      .catch((err) => {
+        console.warn(`Error: ${err}`);
+      });
+  }, []);
 
     // Handle data 
     const fighter = {
@@ -133,12 +165,12 @@ const Profile = () => {
             boxSize='200px'
             src={fighter.image} alt='Dan Abramov' />
           <VStack spacing={1.8} align='left'>
-            <Text fontSize='3xl'>{fighter.name}</Text>
-            <Text fontSize='xl'>Gender: {fighter.sex},  Age: {fighter.age}</Text>
-            <Text fontSize='xl'>{fighter.height} cm, {fighter.weight} lb (%muscle, %fat, %water)</Text>
-            <Text fontSize='xl'>Hand: {fighter.hand}</Text>
-            <Text fontSize='xl'>Class: {fighter.class}</Text>
-            <Text fontSize='xl'>Club: {fighter.club}</Text>
+            <Text fontSize='3xl'>{firstName} {lastName}</Text>
+            <Text fontSize='xl'>Gender: {gender},  Age: {age}</Text>
+            <Text fontSize='xl'>{height} cm, {weight} lb (%muscle, %fat, %water)</Text>
+            <Text fontSize='xl'>Hand: {hand}</Text>
+            <Text fontSize='xl'>Class: {fightClass}</Text>
+            <Text fontSize='xl'>Club: {club}</Text>
           </VStack>
         </HStack>
       </Box>

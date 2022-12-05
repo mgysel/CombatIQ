@@ -71,6 +71,7 @@ export default function WithSubnavigation() {
             </MenuButton>
             <MenuList color='black'>
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              <MenuItem as={RouterLink} to='/edit-profile'>Edit Profile</MenuItem>
               <MenuItem>Privacy Settings</MenuItem>
             </MenuList>
           </Menu>

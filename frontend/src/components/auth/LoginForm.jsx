@@ -71,7 +71,7 @@ const LoginForm = (props) => {
           <form onSubmit={handleLogIn}>
             <Input
               bg="white"
-              placeholder="Enter username"
+              placeholder="Enter email"
               mb="10px"
               color="black"
               onChange={(e) => setEmail(e.target.value)}
