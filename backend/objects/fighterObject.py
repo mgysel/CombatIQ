@@ -19,14 +19,19 @@ class Fighter:
     '''
     User class that contains basic user info/methods
     '''
-    def __init__(self, _id, email, password, first_name, last_name, age, weight):
+    def __init__(self, _id, email, password, first_name, last_name, gender, age, height, weight, hand, weight_class, club):
         self._id = _id
-        self.first_name = first_name
-        self.last_name = last_name 
         self.email = email
         self.password = password
+        self.first_name = first_name
+        self.last_name = last_name 
+        self.gender = gender 
         self.age = age
+        self.height = height
         self.weight = weight
+        self.hand = hand 
+        self.weight_class = weight_class
+        self.club = club
 
     def get_all_fighters():
         '''
@@ -121,7 +126,19 @@ class Fighter:
         User json object to User Object
         '''
         if fighter_json != None:
-            properties = ['email', 'password', 'first_name', 'last_name', 'age', 'weight']
+            properties = [
+                'email', 
+                'password', 
+                'first_name', 
+                'last_name', 
+                'gender',
+                'age', 
+                'height',
+                'weight',
+                'hand',
+                'weight_class',
+                'club'
+            ]
             for prop in properties:
                 if prop not in fighter_json:
                     return None
@@ -134,8 +151,13 @@ class Fighter:
                 fighter_json['password'], 
                 fighter_json['first_name'],
                 fighter_json['last_name'],
+                fighter_json['gender'],
                 fighter_json['age'],
-                fighter_json['weight']
+                fighter_json['height'],
+                fighter_json['weight'],
+                fighter_json['hand'],
+                fighter_json['weight_class'],
+                fighter_json['club'],
             )
 
     @staticmethod
@@ -187,7 +209,7 @@ class Fighter:
         Returns False if email taken
         '''
         db = MongoWrapper().client['CombatIQ']
-        coll = db['users']
+        coll = db['Fighters']
         return(coll.find_one({ 'email': user_email }) is None)
 
     @classmethod

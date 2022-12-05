@@ -16,48 +16,20 @@ const Landing = () => {
       alignItems="center"
       textAlign="center"
     >
-      <Heading as="h1" my="1rem" fontSize="4.5em" mt="16%">
+      <Heading as="h1" my="1rem" fontSize="4.5em" mt="30px">
         Welcome to Combat IQ
       </Heading>
-      <Flex justifyContent="space-between" w="100%" maxW="28rem" mt="3rem">
-        {display===0 &&
-        <>
-          <Button
-            w="10rem"
-            h="4rem"
-            colorScheme="teal"
-            size="lg"
-            fontSize="1.5em"
-            onClick={() => {
-              setDisplay(1);
-            }}
-          >
-            Login
-          </Button>
-          <Button
-            w="10rem"
-            h="4rem"
-            colorScheme="teal"
-            size="lg"
-            fontSize="1.5em"
-            onClick={() => {
-              setDisplay(2);
-            }}
-          >
-            Signup
-          </Button>
-        </>
+      <Flex justifyContent="space-between" w="100%" maxW="28rem" mt="20px">
+        {
+          display===0 &&
+          <>
+            <LoginForm setDisplay={setDisplay} />
+          </>
         }
         {
           display===1 &&
           <>
-            <LoginForm />
-          </>
-        }
-        {
-          display===2 &&
-          <>
-            <SignupForm />
+            <SignupForm setDisplay={setDisplay} />
           </>
         }
       </Flex>

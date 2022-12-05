@@ -17,7 +17,7 @@ import { Link as RouterLink } from "react-router-dom";
 import API from "../../helpers/api";
 import { StoreContext } from "../../helpers/context";
 
-const LoginForm = () => {
+const LoginForm = (props) => {
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
   const [getEmail, setEmail] = useState("");
@@ -40,7 +40,7 @@ const LoginForm = () => {
       .then((json) => {
         localStorage.setItem("token", json["token"]);
         setLoggedIn(true);
-        history.push("/homepage");
+        history.push("/");
       })
       .catch((err) => {
         err.json().then((json) => {
@@ -57,16 +57,15 @@ const LoginForm = () => {
         boxShadow="lg"
         bg="gray.700"
         w="450px"
-        h="450px"
         borderRadius="10px"
-        p="40px 60px 0px 60px"
+        p="20px 60px 0px 60px"
         textAlign="center"
         color="white"
         direction="column"
         justify="space-between"
       >
         <Flex direction="column">
-          <Heading pt="20px" pb="30px">
+          <Heading pt="0px" pb="20px">
             Login
           </Heading>
           <form onSubmit={handleLogIn}>
@@ -103,7 +102,7 @@ const LoginForm = () => {
                 </Button>
               </InputRightElement>
             </InputGroup>
-            <Button type="submit" w="100%" colorScheme="teal" mb="15px">
+            <Button type="submit" w="100%" colorScheme="teal" mb="0px">
               Log in
             </Button>
           </form>
@@ -129,13 +128,13 @@ const LoginForm = () => {
           </Alert>
         </Flex>
         <Button
-          as={RouterLink}
-          to="/forgot-password"
           color="white"
           variant="link"
-          mb="60px"
+          onClick={() => {props.setDisplay(1)}}
+          mb='40px'
+          mt='30px'
         >
-          Forgot password?
+          Don't have an account?
         </Button>
       </Flex>
     </Flex>

@@ -1,3 +1,4 @@
+import React, { useState, useContext, useEffect, useRef } from "react";
 import {
   Box,
   Flex,
@@ -28,10 +29,22 @@ import {
 } from '@chakra-ui/icons';
 import { Link as RouterLink } from "react-router-dom";
 import { FaUser, FaShoppingCart } from "react-icons/fa";
-import { useHistory ,useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
+import { StoreContext } from "../helpers/context";
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
+  const context = useContext(StoreContext);
+  const [loggedIn, setLoggedIn] = context.loggedIn;
+  let history = useHistory();
+  
+  // Handle clicking logout
+  const handleLogout = () => {
+    console.log("Inside handleLogout")
+    localStorage.removeItem("token");
+    setLoggedIn(false);
+    history.push("/");
+  };
 
   return (
     <Box>
@@ -57,11 +70,8 @@ export default function WithSubnavigation() {
               User
             </MenuButton>
             <MenuList color='black'>
-              <MenuItem>Nationality</MenuItem>
-              <MenuItem>Gender</MenuItem>
-              <MenuItem>Birthday</MenuItem>
-              <MenuItem>Height & weight</MenuItem>
-              <MenuItem>Club</MenuItem>
+              <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              <MenuItem>Privacy Settings</MenuItem>
             </MenuList>
           </Menu>
         </Flex>

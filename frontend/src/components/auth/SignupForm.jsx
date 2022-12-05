@@ -17,7 +17,7 @@ import {
 import API from "../../helpers/api";
 import { StoreContext } from "../../helpers/context";
 
-const SignupForm = () => {
+const SignupForm = (props) => {
   const [show, setShow] = React.useState(false);
   const [getEmail, setEmail] = useState("");
   const [getPassword, setPassword] = useState("");
@@ -46,7 +46,7 @@ const SignupForm = () => {
       .then((json) => {
         localStorage.setItem("token", json.token);
         setLoggedIn(true);
-        history.push("/homepage");
+        history.push("/");
       })
       .catch((err) => {
         err.json().then((json) => {
@@ -64,14 +64,12 @@ const SignupForm = () => {
       <Box
         bg="gray.700"
         w="450px"
-        h="550px"
         borderRadius="10px"
-        p="60px"
-        pt="t0px"
+        p="20px 60px 0px 60px"
         textAlign="center"
         color="white"
       >
-        <Heading pb="30px">Register</Heading>
+        <Heading pb="30px">Signup</Heading>
         <form onSubmit={handleRegister}>
           <Input
             bg="white"
@@ -170,6 +168,15 @@ const SignupForm = () => {
             top="8px"
           />
         </Alert>
+        <Button
+          color="white"
+          variant="link"
+          mb='40px'
+          mt='30px'
+          onClick={() => {props.setDisplay(0)}}
+        >
+          Already have an account?
+        </Button>
       </Box>
     </Flex>
   );

@@ -178,11 +178,16 @@ def auth_register(data, secret_key):
         ) 
 
     # Create user object, add to database
+    gender = -1
     age = -1
+    height = -1
     weight = -1
+    hand = -1
+    weight_class = -1
+    club = -1
 
     print("Inserting fighter")
-    fighter = Fighter(None, email, generate_password_hash(password), first_name, last_name, age, weight)
+    fighter = Fighter(None, email, generate_password_hash(password), first_name, last_name, gender, age, height, weight, hand, weight_class, club)
     Fighter.insert_one(fighter)
 
     # Log user in once registered
