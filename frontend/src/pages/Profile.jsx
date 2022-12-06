@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import {
   Heading,
 } from "@chakra-ui/react";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+import { AspectRatio, Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import { Image, Button } from '@chakra-ui/react'
 import { Grid, Stack, HStack, VStack, Right } from "@chakra-ui/react";
 import { Text, Flex, Center } from '@chakra-ui/react'
@@ -49,7 +49,7 @@ const Profile = () => {
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
   const [hand, setHand] = useState("");
-  const [fightClass, setFightClass] = useState("");
+  const [weightClass, setWeightClass] = useState("");
   const [club, setClub] = useState("");
   const [image, setImage] = useState("");
 
@@ -57,7 +57,6 @@ const Profile = () => {
     API.getPath("user/profile")
       .then((json) => {
         // setName(json.data.user.first_name);
-        console.log(json.data.user);
         setFirstName(json.data.user.first_name);
         setLastName(json.data.user.last_name);
         setGender(json.data.user.gender);
@@ -65,9 +64,13 @@ const Profile = () => {
         setHeight(json.data.user.height);
         setWeight(json.data.user.weight);
         setHand(json.data.user.hand);
-        setFightClass(json.data.user.class);
+        setWeightClass(json.data.user.weight_class);
         setClub(json.data.user.club);
+        console.log("CLUB")
+        console.log(club)
         setImage(json.data.user.image);
+        console.log("INSIDE PROFILE");
+        console.log(image);
       })
       .catch((err) => {
         console.warn(`Error: ${err}`);
@@ -161,15 +164,18 @@ const Profile = () => {
       >
         <Text fontSize='2xl' pb='10px'>My Profile</Text>
         <HStack spacing='24px' width='1500px'>
-          <Image 
-            boxSize='200px'
-            src={fighter.image} alt='Dan Abramov' />
+          <AspectRatio width='210px' height='210px'>
+            <Image 
+              src={image} alt='Dan Abramov' 
+              objectFit='cover'
+            />
+          </AspectRatio>
           <VStack spacing={1.8} align='left'>
             <Text fontSize='3xl'>{firstName} {lastName}</Text>
             <Text fontSize='xl'>Gender: {gender},  Age: {age}</Text>
-            <Text fontSize='xl'>{height} cm, {weight} lb (%muscle, %fat, %water)</Text>
+            <Text fontSize='xl'>{height} cm, {weight} lb</Text>
             <Text fontSize='xl'>Hand: {hand}</Text>
-            <Text fontSize='xl'>Class: {fightClass}</Text>
+            <Text fontSize='xl'>Class: {weightClass}</Text>
             <Text fontSize='xl'>Club: {club}</Text>
           </VStack>
         </HStack>

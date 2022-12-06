@@ -43,7 +43,7 @@ def user_profile_update_user(objectId, data):
     '''
     Updates user in the User database
     '''
-    fields = ['email', 'password', 'first_name', 'last_name', 'gender', 'age', 'height', 'weight', 'hand', 'weight_class', 'club', 'image']
+    fields = ['email', 'first_name', 'last_name', 'gender', 'age', 'height', 'weight', 'hand', 'weight_class', 'club', 'image']
     for field in fields:
         if not field in data:
             return make_response(

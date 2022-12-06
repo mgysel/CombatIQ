@@ -19,32 +19,12 @@ class User:
     '''
     User class that contains basic user info/methods
     '''
-    def __init__(self, _id, email, password, first_name, last_name, gender, age, height, weight, hand, weight_class, club, image):
+    def __init__(self, _id, user_id, general_stats, fight_history, training_history):
         self._id = _id
-        self.email = email
-        self.password = password
-        self.first_name = first_name
-        self.last_name = last_name 
-        self.gender = gender 
-        self.age = age
-        self.height = height
-        self.weight = weight
-        self.hand = hand 
-        self.weight_class = weight_class
-        self.club = club
-        self.image = image
-
-    def get_all_users():
-        '''
-        Returns list of User objects from the database
-        '''
-        db = MongoWrapper().client['CombatIQ']
-        coll = db['Fighters']
-        users = []
-        for user_json in coll.find():
-            user = User.from_json(user_json)
-            users.append(user)
-        return users
+        self.user_id = user_id
+        self.general_stats = general_stats
+        self.fight_history = fight_history
+        self.training_history = training_history 
 
     @staticmethod
     def insert_one(user):
@@ -80,29 +60,6 @@ class User:
             print(user)
             return user
         return None
-
-    @classmethod
-    def find_users_from_search(cls, query, page):
-        """
-        Returns users with matching name
-        """
-        PAGE_SIZE = 10
-        filter = {
-            '$or':
-                [
-                    {'first_name': {'$regex': f".*{query}.*", '$options': 'i'}},
-                    {'last_name': {'$regex': f".*{query}.*", '$options': 'i'}},
-                    {'email': {'$regex': f".*{query}.*", '$options': 'i'}}
-                ]
-        }
-        skip = (int(page)-1)*PAGE_SIZE
-        limit = PAGE_SIZE
-
-        db = MongoWrapper().client['CombatIQ']
-        coll = db['Fighters']
-        results = coll.find(filter=filter,skip=skip,limit=limit).collation({'locale':'en'}).sort([('first_name',1),('last_name',1)])
-
-        return [User.from_json(x) for x in results]
 
     @classmethod
     def update_user_attribute(cls, query_attribute, query_user_attribute, attribute, user_attribute):

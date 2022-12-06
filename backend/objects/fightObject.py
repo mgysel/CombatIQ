@@ -15,36 +15,17 @@ from objects.MongoWrapper import MongoWrapper
 from bson import ObjectId
 import re
 
-class User:
+class Fight:
     '''
-    User class that contains basic user info/methods
+    Fight class that contains basic fight info/methods
     '''
-    def __init__(self, _id, email, password, first_name, last_name, gender, age, height, weight, hand, weight_class, club, image):
+    def __init__(self, _id, id_1, id_2, comparison, positioning, video):
         self._id = _id
-        self.email = email
-        self.password = password
-        self.first_name = first_name
-        self.last_name = last_name 
-        self.gender = gender 
-        self.age = age
-        self.height = height
-        self.weight = weight
-        self.hand = hand 
-        self.weight_class = weight_class
-        self.club = club
-        self.image = image
-
-    def get_all_users():
-        '''
-        Returns list of User objects from the database
-        '''
-        db = MongoWrapper().client['CombatIQ']
-        coll = db['Fighters']
-        users = []
-        for user_json in coll.find():
-            user = User.from_json(user_json)
-            users.append(user)
-        return users
+        self.id_1 = id_1
+        self.id_2 = id_2
+        self.comparison = comparison
+        self.positioning = positioning 
+        self.video = video
 
     @staticmethod
     def insert_one(user):
@@ -65,79 +46,44 @@ class User:
                 return None
 
     @classmethod
-    def find_user_by_attribute(cls, attribute, user_attribute):
+    def find_fight_by_attribute(cls, attribute, fight_attribute):
         '''
         Finds a user by a specific attribute
         Returns user object
         '''
         db = MongoWrapper().client['CombatIQ']
-        coll = db['Fighters']
-        user_json = coll.find_one({ attribute: user_attribute })
+        coll = db['Fights']
+        fight_json = coll.find_one({ attribute: fight_attribute })
 
-        if user_json:
-            user = User.from_json(user_json)
-            print("user")
-            print(user)
-            return user
+        if fight_json:
+            fight = Fight.from_json(fight_json)
+            print("Fight")
+            print(fight)
+            return fight
         return None
 
     @classmethod
-    def find_users_from_search(cls, query, page):
-        """
-        Returns users with matching name
-        """
-        PAGE_SIZE = 10
-        filter = {
-            '$or':
-                [
-                    {'first_name': {'$regex': f".*{query}.*", '$options': 'i'}},
-                    {'last_name': {'$regex': f".*{query}.*", '$options': 'i'}},
-                    {'email': {'$regex': f".*{query}.*", '$options': 'i'}}
-                ]
-        }
-        skip = (int(page)-1)*PAGE_SIZE
-        limit = PAGE_SIZE
-
-        db = MongoWrapper().client['CombatIQ']
-        coll = db['Fighters']
-        results = coll.find(filter=filter,skip=skip,limit=limit).collation({'locale':'en'}).sort([('first_name',1),('last_name',1)])
-
-        return [User.from_json(x) for x in results]
-
-    @classmethod
-    def update_user_attribute(cls, query_attribute, query_user_attribute, attribute, user_attribute):
+    def update_fight_attribute(cls, query_attribute, query_fight_attribute, attribute, fight_attribute):
         '''
         Queries for user by query_attribute = query_user_attribute
         Updates attribute of user to user_attribute
         '''
-        query = { query_attribute: query_user_attribute }
-        values = { "$set": { attribute: user_attribute } }
+        query = { query_attribute: query_fight_attribute }
+        values = { "$set": { attribute: fight_attribute } }
         db = MongoWrapper().client['CombatIQ']
-        coll = db['Fighters']
+        coll = db['Fights']
         coll.update_one(query, values)
 
     @classmethod
-    def push_user_attribute(cls, query_attribute, query_user_attribute, attribute, user_attribute):
-        '''
-        Queries for user by query_attribute = query_user_attribute
-        Appends attribute of user to user_attribute
-        '''
-        query = { query_attribute: query_user_attribute }
-        values = { "$push": { attribute: user_attribute } }
-        db = MongoWrapper().client['CombatIQ']
-        coll = db['Fighters']
-        coll.update_one(query, values)
-
-    @classmethod
-    def update_user_attributes(cls, query_attribute, query_user_attribute, values):
+    def update_fight_attributes(cls, query_attribute, query_fight_attribute, values):
         '''
         Queries for user by query_attribute = query_user_attribute
         Updates attribute of user to user_attribute
         '''
-        query = { query_attribute: query_user_attribute }
+        query = { query_attribute: query_fight_attribute }
         values = { "$set": values }
         db = MongoWrapper().client['CombatIQ']
-        coll = db['Fighters']
+        coll = db['Fights']
         coll.update_one(query, values)
 
     # def to_json(self):
@@ -153,30 +99,23 @@ class User:
     #     return obj
 
     @staticmethod
-    def from_json(user_json):
+    def from_json(fight_json):
         '''
-        User json object to User Object
+        Fight json object to Fight Object
         '''
-        if user_json != None:
+        if fight_json != None:
             properties = [
-                'email', 
-                'password', 
-                'first_name', 
-                'last_name', 
-                'gender',
-                'age', 
-                'height',
-                'weight',
-                'hand',
-                'weight_class',
-                'club',
-                'image'
+                'id_1', 
+                'id_2', 
+                'comparison', 
+                'positioning', 
+                'video',
             ]
             for prop in properties:
-                if prop not in user_json:
+                if prop not in fight_json:
                     return None
             _id = None
-            if '_id' in user_json:
+            if '_id' in fight_json:
                 _id = user_json['_id']
             return User(
                 _id, 

@@ -1,4 +1,4 @@
-import React, { Component, useState, useRef } from 'react'
+import React, { Component, useEffect, useState, useRef } from 'react'
 import { 
   Box, 
   Button,
@@ -15,16 +15,19 @@ import { Link as RouterLink } from "react-router-dom";
 import ImageUploading from "react-images-uploading";
 
 const ImageUpload = (props) => {
-  console.log("IMAGES UPLOAD")
-  console.log(props)
-
+  const image = props.image
+  const setImage = props.setImage
   const [images, setImages] = React.useState([]);
-  const maxNumber = 1;
+  const maxNumber = 69;
 
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
     console.log(imageList, addUpdateIndex);
     setImages(imageList);
+    setImage(imageList[imageList.length - 1].data_url);
+    console.log("ONCHANGE");
+    console.log(imageList[imageList.length - 1].data_url);
+
   };
 
   return (

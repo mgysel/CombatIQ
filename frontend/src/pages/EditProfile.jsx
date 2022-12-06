@@ -31,8 +31,8 @@ const EditProfile = () => {
   const [email, setEmail] = useState("");
   const [gender, setGender] = useState("");
   const [age, setAge] = useState("");
-  const [height, setHeight] = useState("");
-  const [weight, setWeight] = useState("");
+  const [height, setHeight] = useState(0);
+  const [weight, setWeight] = useState(0);
   const [hand, setHand] = useState("");
   const [weightClass, setWeightClass] = useState("");
   const [club, setClub] = useState("");
@@ -50,8 +50,8 @@ const EditProfile = () => {
         setEmail(json.data.user.email);
         setGender(json.data.user.gender);
         setAge(json.data.user.age);
-        setHeight(json.data.user.height);
-        setWeight(json.data.user.weight);
+        setHeight(+json.data.user.height);
+        setWeight(+json.data.user.weight);
         setHand(json.data.user.hand);
         setWeightClass(json.data.user.weight_class);
         setClub(json.data.user.club);
@@ -85,6 +85,8 @@ const EditProfile = () => {
       club: club,
       image: image,
     };
+    console.log("EDIT USER");
+    console.log(payload);
     API.putPath("user/profile/editUser", payload)
       .then((json) => {
         setAlertDisplay("flex");
@@ -187,10 +189,10 @@ const EditProfile = () => {
         </FormControl>
         <FormControl my="1rem" id="edit-height">
           <FormLabel>Height (m)</FormLabel>
-          <NumberInput defaultValue={height} onChange={(e) => {
+          <NumberInput value={height}>
+            <NumberInputField onChange={(e) => {
               setHeight(e.target.value);
-            }}>
-            <NumberInputField />
+            }} />
             <NumberInputStepper>
               <NumberIncrementStepper />
               <NumberDecrementStepper />
@@ -199,10 +201,10 @@ const EditProfile = () => {
         </FormControl>
         <FormControl my="1rem" id="edit-weight">
           <FormLabel>Weight (kg)</FormLabel>
-          <NumberInput defaultValue={weight} onChange={(e) => {
+          <NumberInput value={weight}>
+            <NumberInputField onChange={(e) => {
               setWeight(e.target.value);
-            }}>
-            <NumberInputField />
+            }} />
             <NumberInputStepper>
               <NumberIncrementStepper />
               <NumberDecrementStepper />
@@ -211,16 +213,16 @@ const EditProfile = () => {
         </FormControl>
         <FormControl my="1rem" id="edit-hand">
           <FormLabel>Hand</FormLabel>
-            <RadioGroup onChange={(e) => setHand(e.target.value)} value={hand}>
+            <RadioGroup onChange={setHand} value={hand}>
             <Stack direction='row'>
-              <Radio ml='5px' mr='10px' value='right'>Right</Radio>
-              <Radio value='left'>Left</Radio>
+              <Radio ml='5px' mr='10px' value='Right'>Right</Radio>
+              <Radio value='Left'>Left</Radio>
             </Stack>
           </RadioGroup>
         </FormControl>
         <FormControl my="1rem" id="edit-weightClass">
           <FormLabel>Weight Class</FormLabel>
-          <Select placeholder='Select option' defaultValue={weightClass} onChange={(e) => {
+          <Select placeholder='Select option' value={weightClass} onChange={(e) => {
               setWeightClass(e.target.value);
             }}>
             <option value='Minimumweight (48kg)'>Minimumweight (48kg)</option>
