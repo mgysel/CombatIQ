@@ -14,14 +14,14 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
-  propNames,
-
 } from "@chakra-ui/react";
 import VideoInput from '../../components/video/VideoInput.jsx'
 
 const UploadVideoModal = (props, children, ...rest ) => {
 
   console.log("UPLOAD VIDEO MODAL")
+  console.log(rest)
+  console.log(children)
 
   const btnRef = React.useRef(null)
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -40,8 +40,9 @@ const UploadVideoModal = (props, children, ...rest ) => {
         {...rest}
         isOpen={isOpen}
         onClose={onClose}
-        closeOnOverlayClick={false}
+        closeOnOverlayClick={true}
         blockScrollOnMount={false}
+        trapFocus={false}
       >
         <ModalOverlay />
         <ModalContent>

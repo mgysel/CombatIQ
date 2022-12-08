@@ -1,39 +1,24 @@
 import {
   Flex,
+  VStack,
+  Image,
 } from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
 import Navigation from "./pages/Navigation";
 import StoreProvider from "./helpers/context";
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { BrowserRouter as Router } from "react-router-dom";
+import { MyModal } from "./MyModal";
 
 function App() {
-  const components = {
-    Modal: {
-      variants: {
-        alwaysOpen: {
-          parts: ["dialog, dialogContainer"],
-          dialog: {
-            pointerEvents: "auto"
-          },
-          dialogContainer: {
-            pointerEvents: "auto"
-          }
-        }
-      }
-    }
-  };
-
-  const theme = extendTheme({
-    components
-  });
-
   return (
-    <ChakraProvider theme={theme}>
-      <StoreProvider>
-        <Navbar />
-        <Navigation />
-      </StoreProvider>
-    </ChakraProvider>
+    <div className="App">
+      <Router>
+        <StoreProvider>
+          <Navbar />
+          <Navigation />
+        </StoreProvider>
+      </Router>
+    </div>
   );
 }
 
