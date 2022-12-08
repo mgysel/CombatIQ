@@ -175,6 +175,26 @@ def user_profile_edit_user(current_user):
 
 
 
+########## TRAINING ROUTES ##########
+@APP.route('/training/upload', methods=['POST'])
+def training_upload():
+    '''
+    Inputs a user object
+    Returns user object if valid JWT
+    '''
+    # data = request.get_json()
+    data = request.files['file']
+    # filename = secure_filename(file.filename)
+    print("INSIDE TRAINING UPLOAD")
+    print(data)
+    print(type(data))
+    print(data.content_length)
+    # response = get_user_profile(current_user._id)
+    # return response
+
+
+
+
 if __name__ == "__main__":
     APP.run(port=(int(sys.argv[1]) if len(sys.argv) == 2 else 2120), debug=True)
 
