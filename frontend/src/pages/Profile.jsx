@@ -54,6 +54,11 @@ const Profile = () => {
   const [image, setImage] = useState("");
 
   useEffect(() => {
+    document.body.style.overflow = 'auto'
+
+  }, [])
+
+  useEffect(() => {
     API.getPath("user/profile")
       .then((json) => {
         // setName(json.data.user.first_name);
