@@ -15,13 +15,21 @@ const VideoInput = (props) => {
   const [source, setSource] = React.useState();
 
   const handleFileChange = (event) => {
+    console.log("HANDLE FILE CHANGE")
     const file = event.target.files[0];
+    console.log("FILE");
+    console.log(file);
     const url = URL.createObjectURL(file);
     setSource(url);
+    console.log(url);
+    console.log(file);
+    console.log(source);
+    props.setVideoFile(file)
   };
 
   const handleChoose = (event) => {
     inputRef.current.click();
+    console.log("INPUT REF: ", inputRef)
   };
 
   return (

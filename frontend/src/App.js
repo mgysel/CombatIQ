@@ -7,7 +7,6 @@ import Navbar from "./components/Navbar";
 import Navigation from "./pages/Navigation";
 import StoreProvider from "./helpers/context";
 import { BrowserRouter as Router } from "react-router-dom";
-import { MyModal } from "./MyModal";
 
 function App() {
   return (

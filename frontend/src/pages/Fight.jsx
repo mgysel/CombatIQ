@@ -35,32 +35,30 @@ const Fight = () => {
 
   // Handle data 
   const fighter1 = {
-    'image': 'https://img.bleacherreport.net/img/images/photos/002/098/618/AP11111909790_crop_exact.jpg?w=1200&h=1200&q=75',
-    'name': 'Wanderlei Silva',
-    'ethnicity': 'Brazilian American',
-    'age': '46 (3 July 1976)',
+    'image': 'https://s.yimg.com/ny/api/res/1.2/JdSJMJqtuG1MT7hNgFg.mw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNw--/https://s.yimg.com/os/creatr-uploaded-images/2022-08/44b94d60-295f-11ed-bfeb-b1218105cc3c',
+    'name': 'Deontay Wilder',
+    'age': '37',
     'sex': 'Male',
-    'height': '180',
-    'weight': '220',
-    'hand': 'right hand',
-    'class': 'middle weight',
+    'height': '199',
+    'weight': '97',
+    'hand': 'Right Hand',
+    'class': 'Heavyweight',
     'club': 'Chute Boxe Academy'
   }
   const fighter2 = {
-    'image': 'https://img.bleacherreport.net/img/images/photos/002/098/618/AP11111909790_crop_exact.jpg?w=1200&h=1200&q=75',
-    'name': 'Wanderlei Silva',
-    'ethnicity': 'Brazilian American',
-    'age': '46 (3 July 1976)',
+    'image': 'https://www.boxingnews24.com/wp-content/uploads/2019/11/0-ortiz13-1300x930.jpg',
+    'name': 'Luis Ortiz II',
+    'age': '43',
     'sex': 'Male',
-    'height': '180',
-    'weight': '220',
+    'height': '193',
+    'weight': '230',
     'hand': 'right hand',
-    'class': 'middle weight',
+    'class': 'Heavyweight',
     'club': 'Chute Boxe Academy'
   }
 
   let videoTitle = 'Video Title'
-  let videoSrc = "https://www.youtube.com/embed/sLTvQnjEkRU"
+  let videoSrc = 'https://www.youtube.com/embed/-YFfC20PDog'
 
   let [isPlaying, setIsPlaying] = React.useState(false);
   let aspectRatioInit = {
