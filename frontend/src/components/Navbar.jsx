@@ -34,8 +34,9 @@ import { StoreContext } from "../helpers/context";
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
-  const context = useContext(StoreContext);
-  const [loggedIn, setLoggedIn] = context.loggedIn;
+  const context = React.useContext(StoreContext);
+  const loggedIn = context.loggedIn[0];
+  const setLoggedIn = context.loggedIn[1];
   let history = useHistory();
   
   // Handle clicking logout
@@ -47,6 +48,7 @@ export default function WithSubnavigation() {
   };
 
   return (
+
     <Box>
       <Flex
         bg={useColorModeValue('gray.800', 'gray.800')}
@@ -60,19 +62,23 @@ export default function WithSubnavigation() {
           <Flex as={RouterLink} to={"/"}>
             <Image src='images/combatiq_logo.svg' />
           </Flex>
-          <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
-            <DesktopNav />
-          </Flex>
-          <Menu alignContent='right'>
-            <MenuButton as={IconButton} color="gray.700" icon={<FaUser />} ml='70vw'>
-              User
-            </MenuButton>
-            <MenuList color='black'>
-              <MenuItem onClick={handleLogout}>Logout</MenuItem>
-              <MenuItem as={RouterLink} to='/edit-profile'>Edit Profile</MenuItem>
-              <MenuItem>Privacy Settings</MenuItem>
-            </MenuList>
-          </Menu>
+          { loggedIn && 
+            <Flex>
+              <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
+                <DesktopNav />
+              </Flex>
+              <Menu alignContent='right'>
+                <MenuButton as={IconButton} color="gray.700" icon={<FaUser />} ml='70vw'>
+                  User
+                </MenuButton>
+                <MenuList color='black'>
+                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                  <MenuItem as={RouterLink} to='/edit-profile'>Edit Profile</MenuItem>
+                  <MenuItem>Privacy Settings</MenuItem>
+                </MenuList>
+              </Menu>
+            </Flex>
+          }
         </Flex>
       </Flex>
     </Box>

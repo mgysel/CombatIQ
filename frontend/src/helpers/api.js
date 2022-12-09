@@ -1,6 +1,6 @@
 class API {
     constructor() {
-      this.url = "http://127.0.0.1:2120";
+      this.url = "http://127.0.0.1:2121";
     }
   
     // GET fetch
@@ -81,6 +81,8 @@ class API {
         body: JSON.stringify(payload),
       };
       return fetch(`${this.url}/${path}`, options).then((res) => {
+        console.log("RES")
+        console.log(res)
         if (!res.ok) {
           throw res;
         }

@@ -6,12 +6,12 @@ import {
   Heading,
   VStack,
 } from "@chakra-ui/react";
+import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
+// import { upload } from 'youtube-videos-uploader';
 
-const VideoInput = (props) => {
+const VideoInput = (props) => {  
   const { width, height } = props;
-
   const inputRef = React.useRef();
-
   const [source, setSource] = React.useState();
 
   const handleFileChange = (event) => {
@@ -24,7 +24,7 @@ const VideoInput = (props) => {
     console.log(url);
     console.log(file);
     console.log(source);
-    props.setVideoFile(file)
+    props.setVideoFile(file);
   };
 
   const handleChoose = (event) => {

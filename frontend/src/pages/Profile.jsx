@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import {
   Heading,
@@ -21,27 +21,23 @@ import {
   StatLabel,
   StatNumber,
   StatHelpText,
-  StatArrow,
   StatGroup,
 } from '@chakra-ui/react'
 import {
-  Container,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
-  MenuIcon,
-  MenuCommand
 } from '@chakra-ui/react'
 import RadarBar from "../components/visualisations/RadarBar";
 import API from "../helpers/api";
-
+import { StoreContext } from "../helpers/context";
+import _ from 'lodash';
 
 const Profile = () => {
+  const context = useContext(StoreContext);
+  const userData = context.userData[0];
+  const setUserData = context.userData[1];
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [gender, setGender] = useState("");
@@ -55,12 +51,15 @@ const Profile = () => {
 
   useEffect(() => {
     document.body.style.overflow = 'auto'
-
   }, [])
 
   useEffect(() => {
-    API.getPath("user/profile")
+    if (_.isEqual(userData, {})) {
+      API.getPath("user/profile")
       .then((json) => {
+        setUserData(json.data.user)
+        context.userData[1](json.data.user)
+        context.userData[0] = json.data.user
         // setName(json.data.user.first_name);
         setFirstName(json.data.user.first_name);
         setLastName(json.data.user.last_name);
@@ -71,15 +70,23 @@ const Profile = () => {
         setHand(json.data.user.hand);
         setWeightClass(json.data.user.weight_class);
         setClub(json.data.user.club);
-        console.log("CLUB")
-        console.log(club)
         setImage(json.data.user.image);
-        console.log("INSIDE PROFILE");
-        console.log(image);
       })
       .catch((err) => {
         console.warn(`Error: ${err}`);
       });
+    } else {
+      setFirstName(userData.first_name);
+      setLastName(userData.last_name);
+      setGender(userData.gender);
+      setAge(userData.age);
+      setHeight(userData.height);
+      setWeight(userData.weight);
+      setHand(userData.hand);
+      setWeightClass(userData.weight_class);
+      setClub(userData.club);
+      setImage(userData.image);
+    }
   }, []);
 
     // Handle data 
@@ -171,7 +178,7 @@ const Profile = () => {
         <HStack spacing='24px' width='1500px'>
           <AspectRatio width='210px' height='210px'>
             <Image 
-              src={image} alt='Dan Abramov' 
+              src={image} alt='Fighter Name' 
               objectFit='cover'
             />
           </AspectRatio>

@@ -5,10 +5,12 @@ import {
   MenuList,
   MenuItem,
 } from "@chakra-ui/react";
+import React, { useContext, useEffect, useState } from "react";
 import VideoInput from '../../components/video/VideoInput.jsx'
 import { ChevronDownIcon } from '@chakra-ui/icons'
 
 const ChooseFightMenu = (props) => {
+  const trainings = React.useState(props.trainings)
 
   return (
     <Menu>
@@ -16,11 +18,12 @@ const ChooseFightMenu = (props) => {
         {props.button_text}
       </MenuButton>
       <MenuList>
-        <MenuItem>Fight 1</MenuItem>
-        <MenuItem>Fight 2</MenuItem>
-        <MenuItem>Fight 3</MenuItem>
-        <MenuItem>Fight 4</MenuItem>
-        <MenuItem>Fight 5</MenuItem>
+        {trainings.map((value, i) => {
+          console.log("Training value: ", value)
+          return (
+            <MenuItem id='i'>{value.title} ({value.date})</MenuItem>
+          )
+        })}
       </MenuList>
     </Menu>
   );
