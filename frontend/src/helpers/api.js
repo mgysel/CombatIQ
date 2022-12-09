@@ -1,6 +1,6 @@
 class API {
     constructor() {
-      this.url = "http://127.0.0.1:2121";
+      this.url = "http://127.0.0.1:2122";
     }
   
     // GET fetch

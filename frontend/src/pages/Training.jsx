@@ -113,27 +113,35 @@ const Training = () => {
         </Menu>
         <UploadVideoModal button_text={'Upload Training Session'} />
       </HStack>
-      <Text fontSize='2xl'>Title: {thisTitle}</Text>
-      <Center pt='20px' pb='20px'>
-        <iframe
-          title='unique'
-          src={'https://player.cloudinary.com/embed/?public_id=' + thisVideo + '&cloud_name=combatiq&player[fluid]=true&player[controls]=true&source[sourceTypes][0]=mp4'}
-          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-          allowfullscreen
-          frameborder="0"
-          allowFullScreen
-          onInferredClick={handleClick}
-          width={isPlaying? aspectRatioChange.maxW : aspectRatioInit.maxW}
-          height={isPlaying? aspectRatioChange.maxH : aspectRatioInit.maxH}
-        ></iframe>
-      </Center>
       <Box
-        mt='0px' ml='10vw' mr='10vw' 
+        mt='20px' ml='10vw' mr='10vw' 
         p='20px'
         pt='10px'
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
       >
-        <Text fontSize='2xl'>Summary</Text>
+      <Text fontSize='2xl'>{thisTitle}</Text>
+        <Center pt='20px' pb='20px'>
+          <iframe
+            title='unique'
+            src={'https://player.cloudinary.com/embed/?public_id=' + thisVideo + '&cloud_name=combatiq&player[fluid]=true&player[controls]=true&source[sourceTypes][0]=mp4'}
+            allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+            allowfullscreen
+            frameborder="0"
+            allowFullScreen
+            onClick={handleClick}
+            onInferredClick={handleClick}
+            width={isPlaying? aspectRatioChange.maxW : aspectRatioInit.maxW}
+            height={isPlaying? aspectRatioChange.maxH : aspectRatioInit.maxH}
+          ></iframe>
+        </Center>
+      </Box>
+      <Box
+        mt='20px' ml='10vw' mr='10vw' 
+        p='20px'
+        pt='10px'
+        borderWidth='1px' borderRadius='lg' overflow='hidden' 
+      >
+        <Text fontSize='2xl' pb='10px'>Summary</Text>
         <TrainingStatBox data={summary} />
       </Box>
 

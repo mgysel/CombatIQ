@@ -14,6 +14,7 @@ from bson.objectid import ObjectId
 
 from objects.userObject import User
 from user import get_user_profile, user_profile_update_user
+from train import train_add_train, training_get_trainings
 
 
 APP = Flask(__name__)
@@ -177,24 +178,28 @@ def user_profile_edit_user(current_user):
 
 ########## TRAINING ROUTES ##########
 @APP.route('/training/upload', methods=['POST'])
+@token_required
 def training_upload():
     '''
     Inputs a user object
     Returns user object if valid JWT
     '''
-    # data = request.get_json()
-    data = request.files['file']
-    # filename = secure_filename(file.filename)
-    print("INSIDE TRAINING UPLOAD")
-    print(data)
-    print(type(data))
-    print(data.content_length)
-    # response = get_user_profile(current_user._id)
-    # return response
+    data = request.get_json()
+    response = train_add_train(data)
+    return response
 
+@APP.route('/training/get', methods=['GET'])
+@token_required
+def training_get(current_user):
+    '''
+    Inputs a user object
+    Returns user object if valid JWT
+    '''
+    response = training_get_trainings(current_user._id)
+    return response
 
 
 
 if __name__ == "__main__":
-    APP.run(port=(int(sys.argv[1]) if len(sys.argv) == 2 else 2120), debug=True)
+    APP.run(port=(int(sys.argv[1]) if len(sys.argv) == 2 else 2122), debug=True)
 
