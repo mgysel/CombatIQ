@@ -59,7 +59,7 @@ export default function WithSubnavigation() {
         borderBottom={1}
         align={'center'}>
         <Flex flex={{ base: 1 }} >
-          <Flex as={RouterLink} to={"/"}>
+          <Flex as={RouterLink} to={"/"} width='100px'>
             <Image src='images/combatiq_logo.svg' />
           </Flex>
           { loggedIn && 
@@ -68,7 +68,7 @@ export default function WithSubnavigation() {
                 <DesktopNav />
               </Flex>
               <Menu alignContent='right'>
-                <MenuButton as={IconButton} color="gray.700" icon={<FaUser />} ml='70vw'>
+                <MenuButton as={IconButton} color="gray.700" icon={<FaUser />} ml='calc(100vw - 445px)'>
                   User
                 </MenuButton>
                 <MenuList color='black'>

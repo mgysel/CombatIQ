@@ -2,36 +2,25 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import {
   Box,
+  Button,
   Center,
-  Divider,
-  Flex,
-  FormControl,
-  FormLabel,
   Grid,
-  Heading,
   HStack,
-  Image,
-  Input,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
   Text,
-  useDisclosure,
-  useRadioGroup,
   VStack,
 } from "@chakra-ui/react";
+import { ChevronDownIcon } from '@chakra-ui/icons';
 import Iframe from 'react-iframe-click';
-import HumanBody from "../components/humanbody/HumanBody";
-import RadioCard from "../components/radio/RadioCard";
-import RingProgress from "../components/visualisations/RingProgress";
-import AntBidirectional from "../components/visualisations/AntBidirectional";
-import Summary from "./fight/Summary.jsx"
 import FighterCard from './fight/FighterCard.jsx'
 import UploadVideoModal from './fight/UploadVideoModal.jsx'
-import ChooseFightMenu from './fight/ChooseFightMenu.jsx'
 import AccuracyVis from './fight/AccuracyVis.jsx'
 import Heatmap from './fight/Heatmap.jsx'
 
 const Fight = () => {
-
-  
 
   // Handle data 
   const fighter1 = {
@@ -80,36 +69,40 @@ const Fight = () => {
     }
   }
 
-  // Comparison graph commented out
-  //   <Box 
-  //   mt='20px' ml='10vw' mr='10vw' 
-  //   p='20px'
-  //   pt='10px'
-  //   borderWidth='1px' borderRadius='lg' overflow='hidden' 
-  // >
-  //   <Text fontSize='2xl' pb='10px'>Comparison</Text>
-  //   <Summary 
-  //     fighter1={fighter1}
-  //     fighter2={fighter2}
-  //   />
-  // </Box>
-
   return (
     <>
       <HStack pt='20px' pl='11vw'>
-        <ChooseFightMenu button_text={'Choose Fight'} />
+      <Menu>
+          <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+            Choose Fight
+          </MenuButton>
+          <MenuList>
+            <MenuItem id='1'>Fight 1</MenuItem>
+            <MenuItem id='2'>Fight 2</MenuItem>
+            <MenuItem id='3'>Fight 3</MenuItem>
+            <MenuItem id='4'>Fight 4</MenuItem>
+            <MenuItem id='5'>Fight 5</MenuItem>
+          </MenuList>
+        </Menu>
         <UploadVideoModal button_text={'Upload Fight'} />
       </HStack>
-      <Center pt='20px' pb='20px'>
-        <Iframe
-          title={videoTitle}
-          src={videoSrc}
-          allowFullScreen
-          onInferredClick={handleClick}
-          width={isPlaying? aspectRatioChange.maxW : aspectRatioInit.maxW}
-          height={isPlaying? aspectRatioChange.maxH : aspectRatioInit.maxH}
-        />
-      </Center>
+      <Box
+        mt='20px' ml='10vw' mr='10vw' mb='20px'
+        p='20px'
+        pt='20px' 
+        borderWidth='1px' borderRadius='lg' overflow='hidden' 
+      >
+        <Center>
+          <Iframe
+            title={videoTitle}
+            src={videoSrc}
+            allowFullScreen
+            onInferredClick={handleClick}
+            width={isPlaying? aspectRatioChange.maxW : aspectRatioInit.maxW}
+            height={isPlaying? aspectRatioChange.maxH : aspectRatioInit.maxH}
+          />
+        </Center>
+      </Box>
       <Box
         mt='0px' ml='10vw' mr='10vw' 
         p='20px'
@@ -151,12 +144,10 @@ const Fight = () => {
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
       >
         <Text fontSize='2xl' pb='10px'>Comparison</Text>
-        <Grid templateColumns='repeat(2, 1fr)' gap={200}>
-          <AccuracyVis
-            fighter1={fighter1}
-            fighter2={fighter2}
-          />
-        </Grid>
+        <AccuracyVis
+          fighter1={fighter1}
+          fighter2={fighter2}
+        />
       </Box>
       <Box
         mt='20px' ml='10vw' mr='10vw' mb='40px'

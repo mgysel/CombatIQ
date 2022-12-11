@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import {
+  AspectRatio,
   Box,
   Button,
   Center,
@@ -25,9 +26,10 @@ import { StoreContext } from "../helpers/context";
 import _ from 'lodash';
 
 const Training = () => {
-  const [thisTraining, setThisTraining] = React.useState(0)
-  const [thisVideo, setThisVideo] = React.useState('')
-  const [thisTitle, setThisTitle] = React.useState('')
+  const [thisTraining, setThisTraining] = useState(0)
+  const [thisVideo, setThisVideo] = useState('')
+  const [thisTitle, setThisTitle] = useState('')
+  const [isPlaying, setIsPlaying] = useState(0);
 
   // Data 
   const summary = {
@@ -40,7 +42,6 @@ const Training = () => {
     'uppercuts': '7',
   }
 
-  let [isPlaying, setIsPlaying] = React.useState(false);
   let aspectRatioInit = {
     'maxW': '1150px',
     'maxH': '150px'
@@ -50,22 +51,27 @@ const Training = () => {
     'maxH': '450px'
   }
 
+  // TODO RETURN VIDEO ELEMENT
   const handleClick = () => {
-    if (!isPlaying) {
-      setIsPlaying(true);
+    console.log("handle click")
+    console.log(isPlaying)
+    if (isPlaying !== 1) {
+      setIsPlaying(1);
       console.log("CHANGING isPLAYING TO TRUE")
-    } else {
-      setIsPlaying(false);
-      console.log("CHANGING isPLAYING TO FALSE")
-    }
+    } 
   }
 
   const handleMenuClick = (i) => {
-    console.log("IIIII: ", i)
-    console.log(context.trainingData[0])
-    setThisTraining(i)
-    setThisTitle(context.trainingData[0][thisTraining].title)
-    setThisVideo(context.trainingData[0][thisTraining].video)
+    console.log("IIIII: ", i);
+    console.log(context.trainingData[0]);
+    setThisTraining(i);
+    setThisTitle(context.trainingData[0][i].title);
+    setThisVideo(context.trainingData[0][i].video);
+
+    console.log("Handle menu click");
+    console.log("CHANGING IS PLAYING TO FALSE");
+    setIsPlaying(0);
+    console.log(isPlaying);
   }
 
   const context = useContext(StoreContext);
@@ -79,7 +85,7 @@ const Training = () => {
         context.trainingData[0] = json.data;
         console.log("Training Data: ", context.trainingData[0])
         console.log("This training: ", context.trainingData[0][thisTraining])
-        setThisTraining(context.trainingData[0].length - 1)
+        setThisTraining(0)
         setThisTitle(context.trainingData[0][thisTraining].title)
         setThisVideo(context.trainingData[0][thisTraining].video)
       })
@@ -87,11 +93,13 @@ const Training = () => {
         console.warn(`Error: ${err}`);
       });
     } else {
-      console.log("Training data is not []")
-      console.log("Training Data: ", context.trainingData[0])
-      setThisTraining(context.trainingData[0].length - 1)
-      setThisTitle(context.trainingData[0][thisTraining].title)
-      setThisVideo(context.trainingData[0][thisTraining].video)
+      if (context.trainingData[0].length > 0) {
+        console.log("Training data is not []")
+        console.log("Training Data: ", context.trainingData[0])
+        setThisTraining(0)
+        setThisTitle(context.trainingData[0][thisTraining].title)
+        setThisVideo(context.trainingData[0][thisTraining].video)
+      }
     }
   }, []);
 
@@ -104,7 +112,6 @@ const Training = () => {
           </MenuButton>
           <MenuList>
             {context.trainingData[0].map((value, i) => {
-              console.log("Training value: ", value)
               return (
                 <MenuItem id={i} onClick={() => {handleMenuClick(i)}}>{value.title} ({value.date})</MenuItem>
               )
@@ -119,9 +126,10 @@ const Training = () => {
         pt='10px'
         borderWidth='1px' borderRadius='lg' overflow='hidden' 
       >
-      <Text fontSize='2xl'>{thisTitle}</Text>
-        <Center pt='20px' pb='20px'>
-          <iframe
+      <Text fontSize='2xl' pb='10px'>{thisTitle}</Text>
+        <Center>
+          <Iframe
+            key={thisTraining + isPlaying}
             title='unique'
             src={'https://player.cloudinary.com/embed/?public_id=' + thisVideo + '&cloud_name=combatiq&player[fluid]=true&player[controls]=true&source[sourceTypes][0]=mp4'}
             allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
@@ -130,9 +138,9 @@ const Training = () => {
             allowFullScreen
             onClick={handleClick}
             onInferredClick={handleClick}
-            width={isPlaying? aspectRatioChange.maxW : aspectRatioInit.maxW}
-            height={isPlaying? aspectRatioChange.maxH : aspectRatioInit.maxH}
-          ></iframe>
+            width={isPlaying===1 ? aspectRatioChange.maxW : aspectRatioInit.maxW}
+            height={isPlaying===1 ? aspectRatioChange.maxH : aspectRatioInit.maxH}
+          ></Iframe>
         </Center>
       </Box>
       <Box
