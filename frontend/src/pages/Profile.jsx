@@ -213,20 +213,20 @@ const Profile = () => {
 
           <VStack>
             <Grid templateColumns='repeat(3, 0fr)' gap={12} pl='40px' pb='35px'>
-              <UnorderedList><Heading size='md' align='middle' pb='10px'>SPEED</Heading>
+              <UnorderedList listStyleType='none'><Heading size='md' align='middle' pb='10px'>SPEED</Heading>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.speed.jab)}><Text fontSize='xl' color='white'>{score.speed.jab}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jab</Text></Flex></ListItem>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.speed.hook)}><Text fontSize='xl' color='white'>{score.speed.hook}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hook</Text></Flex></ListItem>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.speed.uppercut)}><Text fontSize='xl' color='white'>{score.speed.uppercut}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Uppercut</Text></Flex></ListItem>
               </UnorderedList>
 
-              <UnorderedList><Heading size='md' align='middle' pb='10px'>POWER</Heading>
+              <UnorderedList listStyleType='none'><Heading size='md' align='middle' pb='10px'>POWER</Heading>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.power.jab)}><Text fontSize='xl' color='white'>{score.power.jab}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jab</Text></Flex></ListItem>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.power.hook)}><Text fontSize='xl' color='white'>{score.power.hook}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hook</Text></Flex></ListItem>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.power.uppercut)}><Text fontSize='xl' color='white'>{score.power.uppercut}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Uppercut</Text></Flex></ListItem>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.power.damage)}><Text fontSize='xl' color='white'>{score.power.damage}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Damage</Text></Flex></ListItem>
               </UnorderedList>
 
-              <UnorderedList width='240px'><Heading size='md' align='middle' pb='8px'>TECHNIQUE</Heading>
+              <UnorderedList width='240px' listStyleType='none'><Heading size='md' align='middle' pb='8px'>TECHNIQUE</Heading>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.technique.strike_accuracy)}><Text fontSize='xl' color='white'>{score.technique.strike_accuracy}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Strike Accuracy</Text></Flex></ListItem>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.technique.blocking)}><Text fontSize='xl' color='white'>{score.technique.blocking}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Blocking</Text></Flex></ListItem>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.technique.reaction)}><Text fontSize='xl' color='white'>{score.technique.reaction}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reaction</Text></Flex></ListItem>
@@ -235,12 +235,12 @@ const Profile = () => {
             </Grid>
 
             <Grid templateColumns='repeat(2, 0fr)' gap={12} pl='20px' pr='20px' pb='35px'>
-              <UnorderedList width='240px'><Heading size='md' align='middle' pb='10px'>STAMINA</Heading>
+              <UnorderedList width='240px' listStyleType='none'><Heading size='md' align='middle' pb='10px'>STAMINA</Heading>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.stamina.rhythm)}><Text fontSize='xl' color='white'>{score.stamina.rhythm}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rhythm</Text></Flex></ListItem>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.stamina.resistance)}><Text fontSize='xl' color='white'>{score.stamina.resistance}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Resistance</Text></Flex></ListItem>
               </UnorderedList>
 
-              <UnorderedList width='240px'><Heading size='md' align='middle' pb='10px'>AGGRESSIVENESS</Heading>
+              <UnorderedList width='240px' listStyleType='none'><Heading size='md' align='middle' pb='10px'>AGGRESSIVENESS</Heading>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.aggressiveness.pressing)}><Text fontSize='xl' color='white'>{score.aggressiveness.pressing}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pressing</Text></Flex></ListItem>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.aggressiveness.attacking)}><Text fontSize='xl' color='white'>{score.aggressiveness.attacking}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Attacking</Text></Flex></ListItem>
                 <ListItem><Flex><Center w='40px' bg= {getColor(score.aggressiveness.counter_attacking)}><Text fontSize='xl' color='white'>{score.aggressiveness.counter_attacking}</Text></Center><Text fontSize='xl'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Counter Attacking</Text></Flex></ListItem>
