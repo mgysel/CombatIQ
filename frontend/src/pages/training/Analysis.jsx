@@ -15,7 +15,7 @@ const Analysis = (props) => {
 
     // For radio
     const [tabIndex, setTabIndex] = useState('All Punches')
-    const options = ['All Punches', 'Jabs', 'Hooks', 'Uppercuts']
+    const options = ['All Punches', 'Jabs', 'Crosses', 'Uppercuts']
     const { getRootProps, getRadioProps } = useRadioGroup({
       name: 'framework',
       defaultValue: 'All Punches',
@@ -44,7 +44,7 @@ const Analysis = (props) => {
         {tabIndex==='Jabs' && 
           <StatTable data={AnalysisData.jabs} />
         }
-        {tabIndex==='Hooks' && 
+        {tabIndex==='Crosses' && 
           <StatTable data={AnalysisData.hooks} />
         }
         {tabIndex==='Uppercuts' && 

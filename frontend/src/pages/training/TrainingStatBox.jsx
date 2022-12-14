@@ -37,7 +37,7 @@ const TrainingStatBox = (props) => {
       <StatNumber>{data.strikes}</StatNumber>
     </Stat>
     <Stat align='center'>
-      <StatLabel width='120px'>Significant Strikes</StatLabel>
+      <StatLabel width='120px'>Powerful Strikes</StatLabel>
       <StatNumber>{data.sigstrikes}</StatNumber>
     </Stat>
     <Stat align='center'>
@@ -45,7 +45,7 @@ const TrainingStatBox = (props) => {
       <StatNumber>{data.jabs}</StatNumber>
     </Stat>
     <Stat align='center'>
-      <StatLabel>Hooks</StatLabel>
+      <StatLabel>Crosses</StatLabel>
       <StatNumber>{data.hooks}</StatNumber>
     </Stat>
     <Stat align='center'>
